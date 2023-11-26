@@ -1,0 +1,39 @@
+<<<<<<< HEAD
+node_modules
+=======
+node_modules
+>>>>>>> e40d025d22c165aba03e67c9116279571c90438d
+Codigo PlantUML - Pacotes.txt
+Codigo PlantUML - Classes.txt
+Codigo PlantUML - Projeto.txt
+front-end-ecommerce-main
+# Expo
+.expo/
+dist/
+web-build/
+
+# Native
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo

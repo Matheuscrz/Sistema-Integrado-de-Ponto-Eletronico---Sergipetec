@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+servidor-nodejs:
+image: servidor-nodejs
+build:
+context: .
+dockerfile: dockerfile
+# ports: - "3001:3001"
+
+# volumes: - .\\src:/app/src - .\\views:/app/views
+
+# environment: - NODE_ENV=production
+command: ["node", "./dist/server.js"]

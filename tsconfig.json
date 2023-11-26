@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "rootDir": "./",
+    "outDir": "./build",
+    "lib": ["ES2022"],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "checkJs": false,
+    "resolveJsonModule": true
+  },
+  "include": ["server/App.ts"],
+  "exclude": ["node_modules", "build"]
+}
