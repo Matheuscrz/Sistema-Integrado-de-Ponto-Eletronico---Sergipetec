@@ -26,5 +26,4 @@ class Erro {
     res.status(status).json({ status, type, message });
   }
 }
-// Exporta a classe Erro
 export default Erro;

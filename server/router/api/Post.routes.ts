@@ -1,12 +1,12 @@
 import express, { Request, Response, Router } from "express";
-import { UserController } from "../controller/UserController";
-import RegisterController from "../controller/RegisterController";
-import authenticate from "../auth/authenticate";
-import verifyToken from "../auth/verifyToken";
-import { Registro } from "../class/Registro";
-import ProofController from "../controller/ProofController";
-import { Comprovante } from "../class/Comprovante";
-import { PDF } from "../class/PDF";
+import { UserController } from "../../controller/UserController";
+import RegisterController from "../../controller/RegisterController";
+import authenticate from "../../auth/authenticate";
+import verifyToken from "../../auth/verifyToken";
+import { Registro } from "../../class/Registro";
+import ProofController from "../../controller/ProofController";
+import { Comprovante } from "../../class/Comprovante";
+import { PDF } from "../../class/PDF";
 
 /**
  * Classe que define rotas para autenticação de usuários, registro de pontos e download de comprovantes.

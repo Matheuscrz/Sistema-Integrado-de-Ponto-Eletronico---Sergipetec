@@ -1,15 +1,14 @@
 import express, { Express } from "express";
 import cors, { CorsOptions } from "cors";
-import Erro from "../../middlewares/Erro";
-import loggerMiddleware from "../../middlewares/LoggerMiddleware";
 import GetRoutes from "./Get.routes";
+import PostRoutes from "./Post.routes";
 /**
  * Classe que encapsula a configuração das rotas e middleware para o aplicativo Express.
- * Utiliza o middleware CORS, manipulação de erros e rotas definidas nos módulos GetRoutes e PostRoutes.
+ * Utiliza o middleware CORS, manipulação de erros e rotas definidas nos módulos GetRoutes e PostRoutes
  * @class
  * @name Router
  */
-class WebRoutes {
+class ApiRoutes {
   private readonly app: Express;
 
   /**
@@ -43,9 +42,6 @@ class WebRoutes {
 
     // Habilita o parsing do corpo da requisição como JSON
     this.app.use(express.json());
-
-    // Adiciona o middleware de manipulação de erros
-    this.app.use(Erro.middleware);
   }
 
   /**
@@ -55,10 +51,12 @@ class WebRoutes {
    * @name Router.configureRoutes
    */
   private configureRoutes() {
-    this.app.use(loggerMiddleware);
+    // Instancia os módulos de rotas
     const getRoutes = new GetRoutes();
+    const postRoutes = new PostRoutes();
 
     this.app.use(getRoutes.getRouter());
+    this.app.use(postRoutes.getRouter());
   }
 
   /**
@@ -71,4 +69,4 @@ class WebRoutes {
     return this.app;
   }
 }
-export default WebRoutes;
+export default ApiRoutes;

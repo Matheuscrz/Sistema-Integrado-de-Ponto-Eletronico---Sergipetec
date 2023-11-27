@@ -31,6 +31,4 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     next();
   });
 };
-
-// Exporta a função middleware de verificação de token
 export default verifyToken;

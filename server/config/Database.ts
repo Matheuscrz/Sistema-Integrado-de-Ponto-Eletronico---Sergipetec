@@ -54,5 +54,4 @@ class Database {
 // Cria uma instância da classe Database
 const database = new Database();
 
-// Exporta a instância da classe Database configurada
 export default database;

@@ -103,5 +103,4 @@ passport.deserializeUser(async (userId: number, done) => {
   }
 });
 
-// Exporta o módulo Passport configurado
 export default passport;

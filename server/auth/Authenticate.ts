@@ -58,6 +58,4 @@ class Authenticate {
     )(req, res, next);
   };
 }
-
-// Exporta uma instância da classe Authenticate
 export default new Authenticate();

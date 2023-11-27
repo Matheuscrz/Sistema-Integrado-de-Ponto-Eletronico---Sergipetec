@@ -1,10 +1,9 @@
 import express, { Request, Response, Router } from "express";
-import { UserController } from "../controller/UserController";
-import ProofController from "../controller/ProofController";
-import RegisterController from "../controller/RegisterController";
-import { Registro } from "../class/Registro";
-import path from "path";
-import verifyToken from "../auth/verifyToken";
+import { UserController } from "../../controller/UserController";
+import ProofController from "../../controller/ProofController";
+import RegisterController from "../../controller/RegisterController";
+import { Registro } from "../../class/Registro";
+import verifyToken from "../../auth/verifyToken";
 
 /**
  * Interface que define a estrutura da resposta do histórico.
@@ -33,8 +32,6 @@ class GetRoutes {
    */
   constructor() {
     this.router = express.Router();
-    const staticPath = path.join(__dirname, "../../client/Web/public");
-    this.router.use(express.static(staticPath));
     this.configureRoutes();
   }
 
@@ -168,43 +165,6 @@ class GetRoutes {
         }
       }
     );
-
-    // Rota para exibir a página de Login
-    this.router.get("/", (req: Request, res: Response) => {
-      const indexPath = path.join(
-        __dirname,
-        "../../client/Web/public/index.html"
-      );
-      res.sendFile(indexPath);
-    });
-    // Rota para exibir a página de Recuperação de Senha
-    this.router.get("/RecuperarSenha", (req: Request, res: Response) => {
-      const indexPath = path.join(
-        __dirname,
-        "../../client/Web/public/RecuperarSenha.html"
-      );
-      res.sendFile(indexPath);
-    });
-
-    //Rota protegida para exibir a página Principal
-    this.router.get("/Home", (req: Request, res: Response) => {
-      const indexPath = path.join(
-        __dirname,
-        "../../client/Web/public/Home.html"
-      );
-      res.sendFile(indexPath);
-    });
-    //Rota protegida para exibir a página de Histórico de Registros
-
-    //Rota protegida para exibir a página de Configurações
-
-    //Rota protegida para exibir a página de Perfil
-
-    //Rota protegida para exibir a página de Transferência de Dados
-
-    //Rota protegida para exibir a página de Justificativa de Faltas
-
-    //Rota protegida para exibir a página de Acompanhamento de Faltas
   }
 
   /**

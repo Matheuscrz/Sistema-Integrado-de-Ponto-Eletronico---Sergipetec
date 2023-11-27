@@ -4,7 +4,8 @@ import * as fs from "fs";
 import * as path from "path";
 import * as dotenv from "dotenv";
 import { Express } from "express";
-import Router from "../router/Router";
+import Router from "../router/api/Api.routes";
+import ServerWeb from "./ServerWeb";
 
 dotenv.config();
 /**
@@ -26,7 +27,7 @@ class Server {
    * @constructor
    * @returns {void} Sem retorno.
    */
-  constructor() {
+  constructor(private readonly serverWeb: ServerWeb) {
     // Define a porta do servidor, lendo do ambiente ou usando 3001 como padrão
     this.HTTP_PORT = process.env.HTTP_PORT
       ? parseInt(process.env.HTTP_PORT)
@@ -74,13 +75,14 @@ class Server {
   start() {
     // Inicia o servidor HTTP
     this.httpServer.listen(this.HTTP_PORT, () => {
-      console.log(`Servidor HTTP escutando na porta ${this.HTTP_PORT}`);
+      console.log(`Servidor de API está escutando na porta ${this.HTTP_PORT}`);
       // Verifica se o certificado HTTPS está configurado e inicia o servidor HTTPS
       if (!this.httpsServer) {
         this.setupHttpsServer();
         this.startHttpsServer();
       }
     });
+    this.serverWeb.start();
   }
   /**
    * Inicia o servidor HTTPS se estiver configurado.

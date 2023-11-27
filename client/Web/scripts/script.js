@@ -91,6 +91,7 @@ const handleLoginButton = async () => {
       alert("Por favor, preencha todos os campos e aceite os termos de uso.");
       return;
     } else {
+      // axios.post('/')
       alert("Login efetuado com sucesso!");
     }
     // const response = await authenticateUser(numericCpf, password);

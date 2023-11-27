@@ -1,4 +1,5 @@
 import Server from "./config/Server";
+import ServerWeb from "./config/ServerWeb";
 /**
  * Classe principal que inicia o servidor.
  * Utiliza a classe Server para criar e iniciar o servidor.
@@ -7,13 +8,15 @@ import Server from "./config/Server";
  */
 export class App {
   private readonly server: Server;
+  private readonly serverWeb: ServerWeb;
   /**
    * Cria uma instância da classe App.
    * Inicializa a instância da classe Server.
    * @constructor
    */
   constructor() {
-    this.server = new Server();
+    this.serverWeb = new ServerWeb();
+    this.server = new Server(this.serverWeb);
   }
   /**
    * Inicia o servidor utilizando o método start da instância da classe Server.
@@ -25,6 +28,5 @@ export class App {
     this.server.start();
   }
 }
-// Cria uma instância da classe App e inicia o servidor
 const app = new App();
 app.startServer();
