@@ -17,14 +17,14 @@ let numericCpf = "";
 let password = "";
 let isChecked = false;
 const base = "http";
-const API_IP = "192.168.0.241";
+const IP = "192.168.0.241";
+const WEB_PORT = 3000;
 const API_PORT = 3001;
-const client = "web";
-const getMethod = "get";
-const postMethod = "post";
+const BaseURL_API = `${base}://${IP}:${API_PORT}`;
+const baseURL_WEB = `${base}://${IP}:${WEB_PORT}`;
 
 const apiConfig = axios.create({
-  baseURL: `${base}://${API_IP}:${API_PORT}/${client}`,
+  baseURL: `${BaseURL_API}`,
   validateStatus: function (status) {
     return status >= 200 && status < 500;
   },
@@ -32,11 +32,16 @@ const apiConfig = axios.create({
 
 const authenticateUser = async (cpf, password) => {
   try {
-    const response = await axios.post("URL_DA_SUA_API_DE_LOGIN", {
+    const json = JSON.stringify({
       cpf: cpf,
-      password: password,
+      senha: password,
     });
-
+    customConfig = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await apiConfig.post("/login", json, customConfig);
     return response.data;
   } catch (error) {
     throw new Error("Ocorreu um erro ao autenticar o usuário.");
@@ -68,9 +73,6 @@ const handleCpfInput = () => {
 
 const handlePasswordInput = () => {
   password = document.getElementById("passwordInput").value;
-  // Implementação do formato da senha, se necessário
-  // ...
-
   updateLoginButtonState();
 };
 
@@ -91,36 +93,33 @@ const handleLoginButton = async () => {
       alert("Por favor, preencha todos os campos e aceite os termos de uso.");
       return;
     } else {
-      // axios.post('/')
-      alert("Login efetuado com sucesso!");
+      const response = await authenticateUser(numericCpf, password);
+      if (response.token && response.userId) {
+        // Redirecionar para a página desejada após o login bem-sucedido
+        window.location.href = `${baseURL_WEB}/Home`;
+      } else {
+        alert("Credenciais inválidas. Por favor, tente novamente.");
+      }
     }
-    // const response = await authenticateUser(numericCpf, password);
-
-    // if (response.token && response.userId) {
-    //   alert("Login bem-sucedido!");
-    //   // Redirecionar ou realizar ações pós-login conforme necessário
-    // } else if (response.error) {
-    //   alert(response.error);
-    // } else {
-    //   throw new Error("Ocorreu um erro ao fazer a requisição");
-    // }
   } catch (error) {
     alert("Ocorreu um erro interno: " + error.message);
   }
 };
 
 const handleChangePassword = async () => {
-  await axios
-    .get(`${base}://${API_IP}:${API_PORT}/${client}/RecuperarSenha`)
-    .then((response) => {
-      window.location.href = "RecuperarSenha.html";
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  try {
+    window.location.href = `${baseURL_WEB}/RecuperarSenha`;
+  } catch (error) {
+    console.error("Erro ao alterar a senha:", error);
+  }
 };
 
 const toggleShowPassword = () => {
   const passwordInput = document.getElementById("passwordInput");
   passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+};
+
+const toggleCheckbox = () => {
+  isChecked = !isChecked;
+  updateLoginButtonState();
 };
