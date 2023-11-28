@@ -10,8 +10,6 @@ interface AuthResult {
 // Constantes globais para o endereço IP e porta da API
 const API_IP = "192.168.0.241";
 const API_PORT = 3001;
-const client = "mobile";
-const method = "post";
 
 /**
  * Autentica um usuário no sistema.
@@ -26,13 +24,10 @@ async function authenticateUser(
   senha: string
 ): Promise<AuthResult> {
   try {
-    const response = await axios.post(
-      `http://${API_IP}:${API_PORT}/${client}/${method}/login`,
-      {
-        cpf,
-        senha,
-      }
-    );
+    const response = await axios.post(`http://${API_IP}:${API_PORT}/login`, {
+      cpf,
+      senha,
+    });
 
     if (response.data.token && response.data.userId) {
       storeToken(response.data.token);

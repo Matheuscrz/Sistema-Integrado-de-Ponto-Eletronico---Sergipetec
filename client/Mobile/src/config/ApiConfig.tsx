@@ -7,13 +7,10 @@ import { Platform } from "react-native";
 const base = "http";
 const API_IP = "192.168.0.241";
 const API_PORT = 3001;
-const client = "mobile";
-const getMethod = "get";
-const postMethod = "post";
 
 // Criação do objeto axios com as constantes globais
 const apiConfig = axios.create({
-  baseURL: `${base}://${API_IP}:${API_PORT}/${client}`,
+  baseURL: `${base}://${API_IP}:${API_PORT}`,
   validateStatus: function (status) {
     return status >= 200 && status < 500;
   },
@@ -31,7 +28,7 @@ const getUserData = async () => {
 
     // Utilização das constantes globais
     const response = await axios.get(
-      `${base}://${API_IP}:${API_PORT}/${client}/${getMethod}/home/${userId}`,
+      `${base}://${API_IP}:${API_PORT}/home/${userId}`,
       {
         headers: {
           Authorization: `${token}`,
@@ -61,7 +58,7 @@ const registerPoint = async (date: Date, time: string, location: string) => {
 
     // Utilização das constantes globais
     const response = await axios.post(
-      `${base}://${API_IP}:${API_PORT}/${client}/${postMethod}/registrar-ponto`,
+      `${base}://${API_IP}:${API_PORT}/registrar-ponto`,
       {
         userId,
         date,
@@ -94,7 +91,7 @@ const downloadReceipt = async (id: number) => {
 
     // Utilização das constantes globais
     const response = await FileSystem.downloadAsync(
-      `${base}://${API_IP}:${API_PORT}/${client}/${getMethod}/download-comprovante/${id}`,
+      `${base}://${API_IP}:${API_PORT}/download-comprovante/${id}`,
       FileSystem.documentDirectory + fileName,
       {
         headers: {
@@ -182,7 +179,7 @@ const getRegisters = async () => {
     const userId = await getUserId();
     // Utilização das constantes globais
     const response = await axios.get(
-      `${base}://${API_IP}:${API_PORT}/${client}/${getMethod}/historico/${userId}`,
+      `${base}://${API_IP}:${API_PORT}/historico/${userId}`,
       {
         headers: {
           Authorization: `${token}`,
