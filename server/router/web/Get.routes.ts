@@ -11,8 +11,6 @@ class GetRoutes {
    */
   constructor() {
     this.router = express.Router();
-    const staticPath = path.join(__dirname, "../../../client/Web");
-    this.router.use(express.static(staticPath));
     this.configureRoutes();
   }
 
@@ -24,11 +22,23 @@ class GetRoutes {
    */
   private configureRoutes() {
     this.router.get("/", (req: Request, res: Response) => {
-      const login = path.join(__dirname, "../../../client/Web/index.html");
-      res.sendFile(login);
+      const index = path.join(__dirname, "../../../client/Web/index.html");
+      res.sendFile(index);
+    });
+
+    this.router.get("/RecuperarSenha", (req: Request, res: Response) => {
+      const recover = path.join(
+        __dirname,
+        "../../../client/Web/pages/RecuperarSenha.html"
+      );
+      res.sendFile(recover);
+    });
+
+    this.router.get("/Home", (req: Request, res: Response) => {
+      const home = path.join(__dirname, "../../../client/Web/pages/Home.html");
+      res.sendFile(home);
     });
   }
-
   /**
    * Retorna o roteador configurado com as rotas definidas.
    * @function

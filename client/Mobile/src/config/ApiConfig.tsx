@@ -27,14 +27,11 @@ const getUserData = async () => {
     const userId = await getUserId();
 
     // Utilização das constantes globais
-    const response = await axios.get(
-      `${base}://${API_IP}:${API_PORT}/home/${userId}`,
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
+    const response = await apiConfig.get(`/home/${userId}`, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
 
     return response.data.user;
   } catch (error) {
@@ -57,8 +54,8 @@ const registerPoint = async (date: Date, time: string, location: string) => {
     const userId = await getUserId();
 
     // Utilização das constantes globais
-    const response = await axios.post(
-      `${base}://${API_IP}:${API_PORT}/registrar-ponto`,
+    const response = await apiConfig.post(
+      "/registrar-ponto",
       {
         userId,
         date,
@@ -178,14 +175,11 @@ const getRegisters = async () => {
     const token = await getToken();
     const userId = await getUserId();
     // Utilização das constantes globais
-    const response = await axios.get(
-      `${base}://${API_IP}:${API_PORT}/historico/${userId}`,
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
+    const response = await apiConfig.get(`/historico/${userId}`, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     console.error("Erro ao obter registros do usuário:", error);

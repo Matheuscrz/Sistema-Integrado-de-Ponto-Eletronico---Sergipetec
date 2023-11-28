@@ -1,6 +1,7 @@
 import express, { Express } from "express";
 import cors, { CorsOptions } from "cors";
 import GetRoutes from "./Get.routes";
+import path from "path";
 
 /**
  * Classe que encapsula a configuração das rotas e middleware para o aplicativo Express.
@@ -54,6 +55,7 @@ class WebRoutes {
     // Instancia os módulos de rotas
     const getRoutes = new GetRoutes();
 
+    this.app.use(express.static(path.join(__dirname, "../../../client/Web")));
     // Configuração de rotas
     this.app.use(getRoutes.getRouter());
   }
