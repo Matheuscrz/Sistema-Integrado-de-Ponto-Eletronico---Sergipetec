@@ -2,6 +2,7 @@ import express, { Express } from "express";
 import cors, { CorsOptions } from "cors";
 import GetRoutes from "./Get.routes";
 import PostRoutes from "./Post.routes";
+import loggerMiddleware from "../../middlewares/LoggerMiddleware";
 
 /**
  * Classe que encapsula a configuração das rotas e middleware para o aplicativo Express.
@@ -43,6 +44,8 @@ class ApiRoutes {
 
     // Habilita o parsing do corpo da requisição como JSON
     this.app.use(express.json());
+
+    this.app.use(loggerMiddleware);
   }
 
   /**

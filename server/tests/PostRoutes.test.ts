@@ -1,6 +1,6 @@
 import request from "supertest";
 import express, { Express } from "express";
-import PostRoutes from "../router/Post.routes";
+import PostRoutes from "../router/api/Post.routes";
 
 describe("PostRoutes", () => {
   let app: Express;

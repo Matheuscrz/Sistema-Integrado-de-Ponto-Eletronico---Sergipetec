@@ -1,6 +1,6 @@
 import request from "supertest";
 import express, { Application } from "express";
-import GetRoutes from "../router/Get.routes";
+import GetRoutes from "../router/api/Get.routes";
 
 describe("GetRoutes", () => {
   let app: Application;
