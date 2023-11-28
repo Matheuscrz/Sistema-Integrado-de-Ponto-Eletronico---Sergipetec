@@ -1,17 +1,18 @@
 import express, { Express } from "express";
 import cors, { CorsOptions } from "cors";
 import GetRoutes from "./Get.routes";
+
 /**
  * Classe que encapsula a configuração das rotas e middleware para o aplicativo Express.
- * Utiliza o middleware CORS, manipulação de erros e rotas definidas nos módulos GetRoutes e PostRoutes.
+ * Utiliza o middleware CORS, manipulação de erros e rotas definidas nos módulos GetRoutes e PostRoutes
  * @class
- * @name Router
+ * @name WebRoutes
  */
 class WebRoutes {
   private readonly app: Express;
 
   /**
-   * Cria uma instância da classe Router.
+   * Cria uma instância da classe WebRoutes.
    * Configura as rotas e middleware, incluindo CORS e manipulação de erros.
    * @constructor
    */
@@ -25,7 +26,7 @@ class WebRoutes {
    * Configura os middleware do aplicativo, incluindo CORS e manipulação de erros.
    * @private
    * @function
-   * @name Router.configureMiddleware
+   * @name WebRoutes.configureMiddleware
    */
   private configureMiddleware() {
     // Configurações para o middleware CORS
@@ -47,22 +48,25 @@ class WebRoutes {
    * Configura as rotas do aplicativo, incluindo as rotas definidas nos módulos GetRoutes e PostRoutes.
    * @private
    * @function
-   * @name Router.configureRoutes
+   * @name WebRoutes.configureRoutes
    */
   private configureRoutes() {
+    // Instancia os módulos de rotas
     const getRoutes = new GetRoutes();
 
+    // Configuração de rotas
     this.app.use(getRoutes.getRouter());
   }
 
   /**
    * Retorna o aplicativo Express configurado.
    * @function
-   * @name Router.getExpressApp
+   * @name WebRoutes.getExpressApp
    * @returns {Express} O aplicativo Express configurado.
    */
   getExpressApp() {
     return this.app;
   }
 }
+
 export default WebRoutes;
