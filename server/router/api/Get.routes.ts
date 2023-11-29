@@ -44,12 +44,11 @@ class GetRoutes {
   private configureRoutes() {
     // Rota protegida que retorna os dados do usuário
     this.router.get(
-      "/home/:userId",
+      "/home",
       verifyToken,
       async (req: Request, res: Response) => {
         try {
-          const userID = parseInt(req.params.userId);
-
+          const userID = parseInt(req.body.userId as string, 10);
           if (userID) {
             const user = new UserController();
             const userData = await user.getUserById(userID);
@@ -73,7 +72,7 @@ class GetRoutes {
       }
     );
 
-    // Rota para fazer o download do comprovante
+    // Rota protegida para fazer o download do comprovante
     this.router.get(
       "/download-comprovante/:id",
       verifyToken,
@@ -136,11 +135,11 @@ class GetRoutes {
 
     // Rota protegida que retorna lista de registros
     this.router.get(
-      "/historico/:userId",
+      "/historico",
       verifyToken,
       async (req: Request, res: Response) => {
         try {
-          const userID = parseInt(req.params.userId);
+          const userID = parseInt(req.body.userId as string, 10);
           if (userID) {
             const register = new RegisterController();
             const historyData = await register.getRegisterByUserId(userID);

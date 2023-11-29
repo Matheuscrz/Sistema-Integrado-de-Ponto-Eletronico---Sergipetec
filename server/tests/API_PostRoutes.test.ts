@@ -21,7 +21,6 @@ describe("PostRoutes", () => {
 
       expect(response.status).toBe(200);
     });
-
     it("Lida com erros de autenticação", async () => {
       const response = await request(app).post("/login").send({
         cpf: "usuario_invalido",
@@ -34,15 +33,14 @@ describe("PostRoutes", () => {
 
   describe("POST /registrar-ponto", () => {
     it("Registra um ponto", async () => {
+      const validToken =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTY5ODMyMTU1M30.o_aAyIuH6GGMFriQp-dZFBMJ4YqdC-_Fu2L6y76GbFs";
       const response = await request(app)
         .post("/registrar-ponto")
-        .set(
-          "Authorization",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTY5ODMyNDQzM30.y3ZNKyaNIQbMwV2faTJrteIZxAwDqsCWBFJtaP-tSaM"
-        )
+        .set("Authorization", `${validToken}`)
         .send({
           userId: "2",
-          date: "2023-11-23",
+          date: "2023-11-29",
           time: "12:00:00",
           location: "Local de registro",
         });
@@ -51,12 +49,11 @@ describe("PostRoutes", () => {
     });
 
     it("Lida com erros durante o registro", async () => {
+      const validToken =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTY5ODMyMTU1M30.o_aAyIuH6GGMFriQp-dZFBMJ4YqdC-_Fu2L6y76GbFs";
       const response = await request(app)
         .post("/registrar-ponto")
-        .set(
-          "Authorization",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTY5ODMyNDQzM30.y3ZNKyaNIQbMwV2faTJrteIZxAwDqsCWBFJtaP-tSaM"
-        )
+        .set("Authorization", `${validToken}`)
         .send({
           userId: "usuario_invalido",
           date: "data_invalida",

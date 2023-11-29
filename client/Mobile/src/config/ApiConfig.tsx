@@ -27,7 +27,8 @@ const getUserData = async () => {
     const userId = await getUserId();
 
     // Utilização das constantes globais
-    const response = await apiConfig.get(`/home/${userId}`, {
+    const response = await apiConfig.get(`/home`, {
+      data: { userId },
       headers: {
         Authorization: `${token}`,
       },
@@ -175,7 +176,8 @@ const getRegisters = async () => {
     const token = await getToken();
     const userId = await getUserId();
     // Utilização das constantes globais
-    const response = await apiConfig.get(`/historico/${userId}`, {
+    const response = await apiConfig.get(`/historico`, {
+      data: { userId },
       headers: {
         Authorization: `${token}`,
       },
