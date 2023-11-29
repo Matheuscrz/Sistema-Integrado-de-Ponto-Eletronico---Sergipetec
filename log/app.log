@@ -89,3 +89,6 @@
 {"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29 10:59:21-03:00","method":"GET","url":"/test"}
 {"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29 11:05:38-03:00","method":"GET","url":"/test"}
 {"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29 11:06:06-03:00","method":"GET","url":"/test"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 11:29:11-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-11-29 11:29:11-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação POST recebida para /registrar-ponto","timestamp":"2023-11-29 11:29:15-03:00","method":"POST","url":"/registrar-ponto"}
