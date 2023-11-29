@@ -13,4 +13,5 @@ const loggerMiddleware = (req: Request, res: Response, next: NextFunction) => {
     console.error("Ocorreu um erro ao executar ação", error);
   }
 };
+
 export default loggerMiddleware;

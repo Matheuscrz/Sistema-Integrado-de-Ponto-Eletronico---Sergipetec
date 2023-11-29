@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const cpfInput = document.getElementById("cpfInput");
   const passwordInput = document.getElementById("passwordInput");
-  const showPasswordButton = document.getElementById("showPasswordButton");
   const termsCheckbox = document.getElementById("termsCheckbox");
   const loginButton = document.getElementById("loginButton");
   const footerLink = document.getElementById("footerLink");
@@ -32,19 +31,16 @@ const apiConfig = axios.create({
 
 const authenticateUser = async (cpf, password) => {
   try {
-    const json = JSON.stringify({
+    const response = await apiConfig.post("/login", {
       cpf: cpf,
       senha: password,
     });
-    customConfig = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const response = await apiConfig.post("/login", json, customConfig);
     return response.data;
   } catch (error) {
-    throw new Error("Ocorreu um erro ao autenticar o usuário.");
+    console.error("Erro ao autenticar o usuário:", error);
+    throw new Error(
+      "Ocorreu um erro ao autenticar o usuário. Verifique o console para mais detalhes."
+    );
   }
 };
 
@@ -65,7 +61,7 @@ const handleCpfInput = () => {
   cpfInput.value = formattedCpf;
 
   if (numericCpf.length === 11) {
-    passwordInput.focus();
+    document.getElementById("passwordInput").focus();
   }
 
   updateLoginButtonState();
@@ -95,20 +91,21 @@ const handleLoginButton = async () => {
     } else {
       const response = await authenticateUser(numericCpf, password);
       if (response.token && response.userId) {
-        // Redirecionar para a página desejada após o login bem-sucedido
-        window.location.href = `${baseURL_WEB}/Home`;
+        localStorage.setItem("userId", response.userId);
+        localStorage.setItem("token", response.token);
+        window.location.href = `${baseURL_WEB}/Home`; 
       } else {
         alert("Credenciais inválidas. Por favor, tente novamente.");
       }
     }
   } catch (error) {
-    alert("Ocorreu um erro interno: " + error.message);
+    alert("Ocorreu um erro interno. Por favor, tente novamente.");
   }
 };
 
 const handleChangePassword = async () => {
   try {
-    window.location.href = `${baseURL_WEB}/RecuperarSenha`;
+    window.location.href = "/RecuperarSenha";
   } catch (error) {
     console.error("Erro ao alterar a senha:", error);
   }

@@ -39,7 +39,7 @@ class RegisterController implements IRegisterController {
         "SELECT * FROM Registros WHERE usuario_id = $1 ORDER BY data DESC";
       const result = await database.query(query, [userId]);
       const registerData = result.rows;
-      if (registerData) {
+      if (registerData && registerData.length > 0) {
         return { registers: registerData, status: 200 };
       } else {
         return { registers: [], status: 404 };

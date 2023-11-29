@@ -28,10 +28,10 @@ const getUserData = async () => {
 
     // Utilização das constantes globais
     const response = await apiConfig.get(`/home`, {
-      data: { userId },
       headers: {
         Authorization: `${token}`,
       },
+      params: { userId },
     });
 
     return response.data.user;
@@ -70,7 +70,11 @@ const registerPoint = async (date: Date, time: string, location: string) => {
       }
     );
 
-    storeRegisterId(response.data.registroId);
+    if (response.status === 200) {
+      storeRegisterId(response.data.registroId);
+    } else {
+      console.error("Registro de ponto falhou:", response.data.message);
+    }
     return response;
   } catch (error: any) {
     throw error;
@@ -177,10 +181,10 @@ const getRegisters = async () => {
     const userId = await getUserId();
     // Utilização das constantes globais
     const response = await apiConfig.get(`/historico`, {
-      data: { userId },
       headers: {
         Authorization: `${token}`,
       },
+      params: { userId },
     });
     return response.data;
   } catch (error) {
