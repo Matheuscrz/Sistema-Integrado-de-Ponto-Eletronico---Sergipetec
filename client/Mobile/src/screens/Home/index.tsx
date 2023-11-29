@@ -135,6 +135,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
                   },
                 ]
               );
+            } else if (response.status === 400) {
+              Alert.alert("Limite máximo de registros diários atingido.");
             } else {
               throw new Error("Erro ao registrar ponto");
             }
