@@ -19,19 +19,37 @@ describe("GetRoutes", () => {
 
   it("Retorna os dados do usuário para /home", async () => {
     const response = await request(app)
-      .get("/home")
-      .set("Authorization", `${authToken}`)
-      .send({ userId });
+      .get(`/home?userId=${userId}`)
+      .set("Authorization", `${authToken}`);
 
     expect(response.status).toBe(200);
+    expect(response.body.user).toBeDefined();
   });
 
   it("Retorna o histórico do usuário para /historico", async () => {
     const response = await request(app)
-      .get("/historico")
-      .set("Authorization", `${authToken}`)
-      .send({ userId });
+      .get(`/historico?userId=${userId}`)
+      .set("Authorization", `${authToken}`);
 
     expect(response.status).toBe(200);
+    expect(response.body.registers).toBeDefined();
+  });
+
+  it("Retorna 404 para /home quando o usuário não é encontrado", async () => {
+    const nonExistentUserId = 999;
+    const response = await request(app)
+      .get(`/home?userId=${nonExistentUserId}`)
+      .set("Authorization", `${authToken}`);
+
+    expect(response.status).toBe(404);
+  });
+
+  it("Retorna 404 para /historico quando o usuário não tem registros", async () => {
+    const nonExistentUserId = 999;
+    const response = await request(app)
+      .get(`/historico?userId=${nonExistentUserId}`)
+      .set("Authorization", `${authToken}`);
+
+    expect(response.status).toBe(404);
   });
 });

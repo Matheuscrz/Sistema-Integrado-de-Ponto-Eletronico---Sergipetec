@@ -1,22 +1,33 @@
 import * as winston from "winston";
 import { Request } from "express";
+import { format as formatDate } from "date-fns";
+import { utcToZonedTime } from "date-fns-tz";
 
-// Define um formato personalizado para o log
 const logFormat = winston.format.printf(
   ({ level, message, timestamp, ...meta }) => {
     const logInfo = {
       level,
       message,
-      timestamp,
+      timestamp: formatTimestamp(timestamp),
       method: meta.method,
       url: meta.url,
-      ip: meta.host,
       user: meta.user,
     };
 
     return JSON.stringify(logInfo);
   }
 );
+
+// Função para formatar o timestamp para o fuso horário brasileiro
+const formatTimestamp = (timestamp: string) => {
+  const date = new Date(timestamp);
+  const timeZone = "America/Sao_Paulo";
+  const formattedDate = utcToZonedTime(date, timeZone);
+  return formatDate(formattedDate, "yyyy-MM-dd HH:mm:ssXXX", {
+    timeZone: timeZone,
+  } as any);
+  // O uso de 'as any' aqui é uma solução temporária para contornar o erro de tipo.
+};
 
 class AppLogger {
   private static instance: winston.Logger = winston.createLogger({
@@ -61,7 +72,6 @@ class AppLogger {
     };
 
     if (req) {
-      logInfo.ip = req.host;
       logInfo.method = req.method;
       logInfo.url = req.originalUrl;
       logInfo.user = req.user;

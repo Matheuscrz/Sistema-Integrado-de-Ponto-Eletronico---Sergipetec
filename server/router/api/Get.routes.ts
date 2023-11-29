@@ -48,7 +48,7 @@ class GetRoutes {
       verifyToken,
       async (req: Request, res: Response) => {
         try {
-          const userID = parseInt(req.body.userId as string, 10);
+          const userID = parseInt(req.query.userId as string, 10);
           if (userID) {
             const user = new UserController();
             const userData = await user.getUserById(userID);
@@ -139,7 +139,7 @@ class GetRoutes {
       verifyToken,
       async (req: Request, res: Response) => {
         try {
-          const userID = parseInt(req.body.userId as string, 10);
+          const userID = parseInt(req.query.userId as string, 10);
           if (userID) {
             const register = new RegisterController();
             const historyData = await register.getRegisterByUserId(userID);

@@ -1,30 +1,91 @@
-{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-28T14:59:26.706Z","method":"POST","url":"/login"}
-{"level":"info","message":"Solicitação GET recebida para /Login","timestamp":"2023-11-28T14:59:47.277Z","method":"GET","url":"/Login"}
-{"level":"info","message":"Solicitação GET recebida para /","timestamp":"2023-11-28T15:00:07.634Z","method":"GET","url":"/"}
-{"level":"info","message":"Solicitação GET recebida para /home","timestamp":"2023-11-29T10:23:02.798Z","method":"GET","url":"/home"}
-{"level":"info","message":"Solicitação GET recebida para /home","timestamp":"2023-11-29T10:23:20.868Z","method":"GET","url":"/home"}
-{"level":"info","message":"Solicitação GET recebida para /home","timestamp":"2023-11-29T10:23:30.032Z","method":"GET","url":"/home"}
-{"level":"info","message":"Solicitação GET recebida para /home","timestamp":"2023-11-29T10:26:50.318Z","method":"GET","url":"/home"}
-{"level":"info","message":"Solicitação GET recebida para /","timestamp":"2023-11-29T10:32:30.282Z","method":"GET","url":"/"}
-{"level":"info","message":"Solicitação GET recebida para /styles/style.css","timestamp":"2023-11-29T10:32:30.370Z","method":"GET","url":"/styles/style.css"}
-{"level":"info","message":"Solicitação GET recebida para /scripts/script.js","timestamp":"2023-11-29T10:32:30.372Z","method":"GET","url":"/scripts/script.js"}
-{"level":"info","message":"Solicitação GET recebida para /favicon.ico","timestamp":"2023-11-29T10:32:31.344Z","method":"GET","url":"/favicon.ico"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T10:37:09.234Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T10:43:03.299Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T10:47:44.198Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T10:48:56.613Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T10:49:44.984Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29T10:50:27.404Z","method":"POST","url":"/login"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T10:51:07.735Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação GET recebida para /home","timestamp":"2023-11-29T10:52:01.987Z","method":"GET","url":"/home"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T10:56:31.054Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T10:57:38.535Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T10:58:20.168Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação GET recebida para /historico","timestamp":"2023-11-29T11:01:29.725Z","method":"GET","url":"/historico"}
-{"level":"info","message":"Solicitação GET recebida para /historico","timestamp":"2023-11-29T11:02:00.609Z","method":"GET","url":"/historico"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T11:02:56.318Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T11:03:33.316Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T11:03:50.164Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T11:10:56.998Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T11:11:40.758Z","method":"GET","url":"/test"}
-{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29T11:12:27.118Z","method":"GET","url":"/test"}
+{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29 08:44:49-03:00","method":"GET","url":"/test"}
+{"level":"info","message":"Solicitação GET recebida para /","timestamp":"2023-11-29 09:26:21-03:00","method":"GET","url":"/"}
+{"level":"info","message":"Solicitação GET recebida para /styles/style.css","timestamp":"2023-11-29 09:26:22-03:00","method":"GET","url":"/styles/style.css"}
+{"level":"info","message":"Solicitação GET recebida para /scripts/script.js","timestamp":"2023-11-29 09:26:22-03:00","method":"GET","url":"/scripts/script.js"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 09:26:30-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 09:26:30-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /Home","timestamp":"2023-11-29 09:26:30-03:00","method":"GET","url":"/Home"}
+{"level":"info","message":"Solicitação GET recebida para /Home","timestamp":"2023-11-29 09:26:30-03:00","method":"GET","url":"/Home"}
+{"level":"info","message":"Solicitação GET recebida para /RecuperarSenha","timestamp":"2023-11-29 09:27:28-03:00","method":"GET","url":"/RecuperarSenha"}
+{"level":"info","message":"Solicitação GET recebida para /RecuperarSenha","timestamp":"2023-11-29 09:27:28-03:00","method":"GET","url":"/RecuperarSenha"}
+{"level":"info","message":"Solicitação GET recebida para /styles/style-recovery.css","timestamp":"2023-11-29 09:27:28-03:00","method":"GET","url":"/styles/style-recovery.css"}
+{"level":"info","message":"Solicitação GET recebida para /","timestamp":"2023-11-29 09:32:38-03:00","method":"GET","url":"/"}
+{"level":"info","message":"Solicitação GET recebida para /styles/style.css","timestamp":"2023-11-29 09:32:38-03:00","method":"GET","url":"/styles/style.css"}
+{"level":"info","message":"Solicitação GET recebida para /scripts/script.js","timestamp":"2023-11-29 09:32:38-03:00","method":"GET","url":"/scripts/script.js"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 09:32:48-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 09:32:48-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /Home","timestamp":"2023-11-29 09:32:48-03:00","method":"GET","url":"/Home"}
+{"level":"info","message":"Solicitação GET recebida para /Home","timestamp":"2023-11-29 09:32:48-03:00","method":"GET","url":"/Home"}
+{"level":"info","message":"Solicitação GET recebida para /RecuperarSenha","timestamp":"2023-11-29 09:32:51-03:00","method":"GET","url":"/RecuperarSenha"}
+{"level":"info","message":"Solicitação GET recebida para /RecuperarSenha","timestamp":"2023-11-29 09:32:51-03:00","method":"GET","url":"/RecuperarSenha"}
+{"level":"info","message":"Solicitação GET recebida para /styles/style-recovery.css","timestamp":"2023-11-29 09:32:51-03:00","method":"GET","url":"/styles/style-recovery.css"}
+{"level":"info","message":"Solicitação GET recebida para /","timestamp":"2023-11-29 09:45:36-03:00","method":"GET","url":"/"}
+{"level":"info","message":"Solicitação GET recebida para /styles/style.css","timestamp":"2023-11-29 09:45:36-03:00","method":"GET","url":"/styles/style.css"}
+{"level":"info","message":"Solicitação GET recebida para /scripts/script.js","timestamp":"2023-11-29 09:45:36-03:00","method":"GET","url":"/scripts/script.js"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 09:45:45-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 09:45:45-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /Home?userId=${response.userId}&token=${response.token}","timestamp":"2023-11-29 09:45:46-03:00","method":"GET","url":"/Home?userId=${response.userId}&token=${response.token}"}
+{"level":"info","message":"Solicitação GET recebida para /Home?userId=${response.userId}&token=${response.token}","timestamp":"2023-11-29 09:45:46-03:00","method":"GET","url":"/Home?userId=${response.userId}&token=${response.token}"}
+{"level":"info","message":"Solicitação GET recebida para /","timestamp":"2023-11-29 09:50:08-03:00","method":"GET","url":"/"}
+{"level":"info","message":"Solicitação GET recebida para /styles/style.css","timestamp":"2023-11-29 09:50:08-03:00","method":"GET","url":"/styles/style.css"}
+{"level":"info","message":"Solicitação GET recebida para /scripts/script.js","timestamp":"2023-11-29 09:50:08-03:00","method":"GET","url":"/scripts/script.js"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 09:50:19-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 09:50:19-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /Home?userId=2&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTcwMTI2MjIxOX0.BuLscpWnWrwkRmLMZ8-xuDbRdaBioa56YvmlgHOaXsM","timestamp":"2023-11-29 09:50:19-03:00","method":"GET","url":"/Home?userId=2&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTcwMTI2MjIxOX0.BuLscpWnWrwkRmLMZ8-xuDbRdaBioa56YvmlgHOaXsM"}
+{"level":"info","message":"Solicitação GET recebida para /Home?userId=2&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTcwMTI2MjIxOX0.BuLscpWnWrwkRmLMZ8-xuDbRdaBioa56YvmlgHOaXsM","timestamp":"2023-11-29 09:50:19-03:00","method":"GET","url":"/Home?userId=2&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTcwMTI2MjIxOX0.BuLscpWnWrwkRmLMZ8-xuDbRdaBioa56YvmlgHOaXsM"}
+{"level":"info","message":"Solicitação GET recebida para /","timestamp":"2023-11-29 09:51:32-03:00","method":"GET","url":"/"}
+{"level":"info","message":"Solicitação GET recebida para /styles/style.css","timestamp":"2023-11-29 09:51:32-03:00","method":"GET","url":"/styles/style.css"}
+{"level":"info","message":"Solicitação GET recebida para /scripts/script.js","timestamp":"2023-11-29 09:51:32-03:00","method":"GET","url":"/scripts/script.js"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 09:51:44-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 09:51:44-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /Home?userId=2&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTcwMTI2MjMwNH0.y2jphjkuWNle7J3tXFsGwIUGXP7q-5pLS_T3FCjGOiw","timestamp":"2023-11-29 09:51:44-03:00","method":"GET","url":"/Home?userId=2&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTcwMTI2MjMwNH0.y2jphjkuWNle7J3tXFsGwIUGXP7q-5pLS_T3FCjGOiw"}
+{"level":"info","message":"Solicitação GET recebida para /Home?userId=2&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTcwMTI2MjMwNH0.y2jphjkuWNle7J3tXFsGwIUGXP7q-5pLS_T3FCjGOiw","timestamp":"2023-11-29 09:51:44-03:00","method":"GET","url":"/Home?userId=2&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTcwMTI2MjMwNH0.y2jphjkuWNle7J3tXFsGwIUGXP7q-5pLS_T3FCjGOiw"}
+{"level":"info","message":"Solicitação GET recebida para /scripts/homeScript.js","timestamp":"2023-11-29 09:51:44-03:00","method":"GET","url":"/scripts/homeScript.js"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 10:01:25-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 10:01:25-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /Home?userId=2&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTcwMTI2Mjg4NX0.xvR3MBwWI9Kfm3ej7btkDZS42Qfv3SfsUxzm5kxOPik","timestamp":"2023-11-29 10:01:25-03:00","method":"GET","url":"/Home?userId=2&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTcwMTI2Mjg4NX0.xvR3MBwWI9Kfm3ej7btkDZS42Qfv3SfsUxzm5kxOPik"}
+{"level":"info","message":"Solicitação GET recebida para /scripts/homeScript.js","timestamp":"2023-11-29 10:01:25-03:00","method":"GET","url":"/scripts/homeScript.js"}
+{"level":"info","message":"Solicitação GET recebida para /","timestamp":"2023-11-29 10:05:00-03:00","method":"GET","url":"/"}
+{"level":"info","message":"Solicitação GET recebida para /styles/style.css","timestamp":"2023-11-29 10:05:00-03:00","method":"GET","url":"/styles/style.css"}
+{"level":"info","message":"Solicitação GET recebida para /scripts/script.js","timestamp":"2023-11-29 10:05:00-03:00","method":"GET","url":"/scripts/script.js"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 10:05:10-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 10:05:10-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /Home","timestamp":"2023-11-29 10:05:10-03:00","method":"GET","url":"/Home"}
+{"level":"info","message":"Solicitação GET recebida para /Home","timestamp":"2023-11-29 10:05:10-03:00","method":"GET","url":"/Home"}
+{"level":"info","message":"Solicitação GET recebida para /scripts/homeScript.js","timestamp":"2023-11-29 10:05:10-03:00","method":"GET","url":"/scripts/homeScript.js"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 10:29:25-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /home","timestamp":"2023-11-29 10:29:26-03:00","method":"GET","url":"/home"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-11-29 10:31:22-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-11-29 10:31:24-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 10:31:43-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-11-29 10:31:43-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 10:34:41-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /home","timestamp":"2023-11-29 10:34:41-03:00","method":"GET","url":"/home"}
+{"level":"info","message":"Solicitação GET recebida para /home","timestamp":"2023-11-29 10:35:52-03:00","method":"GET","url":"/home"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-11-29 10:35:56-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 10:36:39-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-11-29 10:36:40-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação GET recebida para /historico","timestamp":"2023-11-29 10:37:52-03:00","method":"GET","url":"/historico"}
+{"level":"info","message":"Solicitação GET recebida para /historico","timestamp":"2023-11-29 10:37:59-03:00","method":"GET","url":"/historico"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 10:38:17-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-11-29 10:38:17-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação GET recebida para /historico?userId=2","timestamp":"2023-11-29 10:38:20-03:00","method":"GET","url":"/historico?userId=2"}
+{"level":"info","message":"Solicitação POST recebida para /registrar-ponto","timestamp":"2023-11-29 10:38:24-03:00","method":"POST","url":"/registrar-ponto"}
+{"level":"info","message":"Solicitação POST recebida para /registrar-ponto","timestamp":"2023-11-29 10:38:28-03:00","method":"POST","url":"/registrar-ponto"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 10:39:24-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-11-29 10:39:24-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação POST recebida para /registrar-ponto","timestamp":"2023-11-29 10:39:29-03:00","method":"POST","url":"/registrar-ponto"}
+{"level":"info","message":"Solicitação POST recebida para /registrar-ponto","timestamp":"2023-11-29 10:41:02-03:00","method":"POST","url":"/registrar-ponto"}
+{"level":"info","message":"Solicitação POST recebida para /registrar-ponto","timestamp":"2023-11-29 10:41:19-03:00","method":"POST","url":"/registrar-ponto"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-11-29 10:50:56-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-11-29 10:51:01-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-11-29 10:51:12-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação POST recebida para /registrar-ponto","timestamp":"2023-11-29 10:51:41-03:00","method":"POST","url":"/registrar-ponto"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-29 10:54:42-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-11-29 10:54:42-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação GET recebida para /historico?userId=2","timestamp":"2023-11-29 10:54:45-03:00","method":"GET","url":"/historico?userId=2"}
+{"level":"info","message":"Solicitação POST recebida para /registrar-ponto","timestamp":"2023-11-29 10:54:53-03:00","method":"POST","url":"/registrar-ponto"}
+{"level":"info","message":"Solicitação GET recebida para /download-comprovante/265","timestamp":"2023-11-29 10:54:56-03:00","method":"GET","url":"/download-comprovante/265"}
+{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29 10:59:21-03:00","method":"GET","url":"/test"}
+{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29 11:05:38-03:00","method":"GET","url":"/test"}
+{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-29 11:06:06-03:00","method":"GET","url":"/test"}
