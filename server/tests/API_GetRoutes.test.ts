@@ -8,22 +8,30 @@ describe("GetRoutes", () => {
   beforeAll(() => {
     const getRoutes = new GetRoutes();
     app = express();
-    app.use("/mobile/get", getRoutes.getRouter());
+    app.use(express.json());
+    app.use(getRoutes.getRouter());
   });
 
   const authToken =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTY5ODMyMTU1M30.o_aAyIuH6GGMFriQp-dZFBMJ4YqdC-_Fu2L6y76GbFs";
 
-  it("Retorna os dados do usuário para /home/:userId", async () => {
+  const userId = 2;
+
+  it("Retorna os dados do usuário para /home", async () => {
     const response = await request(app)
-      .get("/mobile/get/home/2")
-      .set("Authorization", `${authToken}`);
+      .get("/home")
+      .set("Authorization", `${authToken}`)
+      .send({ userId });
+
     expect(response.status).toBe(200);
   });
-  it("Retorna o histórico do usuário para /historico/:userId", async () => {
+
+  it("Retorna o histórico do usuário para /historico", async () => {
     const response = await request(app)
-      .get("/mobile/get/historico/2")
-      .set("Authorization", `${authToken}`);
+      .get("/historico")
+      .set("Authorization", `${authToken}`)
+      .send({ userId });
+
     expect(response.status).toBe(200);
   });
 });
