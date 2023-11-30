@@ -4,7 +4,9 @@ import { Express } from "express";
 import { readFileSync } from "fs";
 import path from "path";
 import ApiRoutes from "../router/api/Api.routes";
+import * as dotenv from "dotenv";
 
+dotenv.config();
 /**
  * Classe que representa o servidor da API, com suporte opcional para HTTPS.
  * @class
@@ -36,6 +38,10 @@ class ServerApi {
 
     // Inicializa a aplicação Express utilizando as rotas da classe ApiRoutes
     this.app = new ApiRoutes().getExpressApp();
+    // Adiciona o middleware de redirecionamento
+
+    // this.app.use(RedirectMiddleware.redirectToHttps);
+
     // Cria o servidor HTTP utilizando a aplicação Express
     this.httpServer = http.createServer(this.app);
     // Inicializa a propriedade httpsServer como nula

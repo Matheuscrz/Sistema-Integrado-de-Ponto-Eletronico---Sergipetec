@@ -6,7 +6,12 @@ node_modules
 Codigo PlantUML - Pacotes.txt
 Codigo PlantUML - Classes.txt
 Codigo PlantUML - Projeto.txt
-front-end-ecommerce-main
+server.key
+server.crt 
+server.csr
+Api.key
+Api.crt 
+Api.csr
 # Expo
 .expo/
 dist/

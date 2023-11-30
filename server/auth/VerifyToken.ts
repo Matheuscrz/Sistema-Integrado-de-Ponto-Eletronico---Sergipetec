@@ -24,7 +24,9 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
   jwt.verify(token, process.env.JWT_SECRET || "secret", (err, decoded) => {
     if (err) {
       // Se o token for inválido, retorna um erro de autenticação
-      return res.status(401).json({ message: "Token inválido" });
+      return res
+        .status(401)
+        .json({ message: "Token inválido. Talvez tenha expirado." });
     }
 
     // Se o token for válido, chama a próxima função middleware
