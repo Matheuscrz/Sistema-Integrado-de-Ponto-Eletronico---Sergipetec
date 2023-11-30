@@ -3,6 +3,7 @@ import cors, { CorsOptions } from "cors";
 import GetRoutes from "./Get.routes";
 import path from "path";
 import loggerMiddleware from "../../middlewares/LoggerMiddleware";
+import cookieParser from "cookie-parser";
 
 /**
  * Classe que encapsula a configuração das rotas e middleware para o aplicativo Express.
@@ -47,6 +48,9 @@ class WebRoutes {
 
     //Middleware de Logs
     this.app.use(loggerMiddleware);
+
+    // Middleware de Cookies
+    this.app.use(cookieParser());
   }
 
   /**

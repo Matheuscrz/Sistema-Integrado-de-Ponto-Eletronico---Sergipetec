@@ -91,9 +91,9 @@ const handleLoginButton = async () => {
     } else {
       const response = await authenticateUser(numericCpf, password);
       if (response.token && response.userId) {
-        localStorage.setItem("userId", response.userId);
-        localStorage.setItem("token", response.token);
-        window.location.href = `${baseURL_WEB}/Home`; 
+        document.cookie = `userId=${response.userId}; path=/`;
+        document.cookie = `token=${response.token}; path=/`;
+        window.location.href = `${baseURL_WEB}/Home`;
       } else {
         alert("Credenciais inválidas. Por favor, tente novamente.");
       }

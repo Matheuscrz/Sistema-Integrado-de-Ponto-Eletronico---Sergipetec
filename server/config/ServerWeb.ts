@@ -4,9 +4,13 @@ import { Express } from "express";
 import { readFileSync } from "fs";
 import path from "path";
 import WebRoutes from "../router/web/Web.routes";
+import RedirectMiddleware from "../middlewares/RedirectMiddlewareWeb";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
- * Classe que representa o servidor web, com suporte opcional para HTTPS.
+ * Classe que representa o servidor web, com suporte para HTTPS.
  * @class
  * @name ServerWeb
  */
@@ -36,6 +40,10 @@ class ServerWeb {
 
     // Inicializa a aplicação Express utilizando as rotas da classe WebRoutes
     this.app = new WebRoutes().getExpressApp();
+    // Adiciona o middleware de redirecionamento
+
+    // this.app.use(RedirectMiddleware.redirectToHttps);
+
     // Cria o servidor HTTP utilizando a aplicação Express
     this.httpServer = http.createServer(this.app);
     // Inicializa a propriedade httpsServer como nula
@@ -55,15 +63,18 @@ class ServerWeb {
   private setupHttpsServer(): void {
     const privateKeyPath = process.env.HTTPS_PRIVATE_KEY_PATH_WEB;
     const certificatePath = process.env.HTTPS_CERTIFICATE_PATH_WEB;
-
     if (privateKeyPath && certificatePath) {
-      // Lê o conteúdo dos arquivos de chave privada e certificado
-      const privateKey = readFileSync(path.resolve(privateKeyPath), "utf8");
-      const certificate = readFileSync(path.resolve(certificatePath), "utf8");
-      // Cria as credenciais para o servidor HTTPS
-      const credentials = { key: privateKey, cert: certificate };
-      // Cria o servidor HTTPS utilizando as credenciais e a aplicação Express
-      this.httpsServer = https.createServer(credentials, this.app);
+      try {
+        // Lê o conteúdo dos arquivos de chave privada e certificado
+        const privateKey = readFileSync(path.resolve(privateKeyPath), "utf8");
+        const certificate = readFileSync(path.resolve(certificatePath), "utf8");
+        // Cria as credenciais para o servidor HTTPS
+        const credentials = { key: privateKey, cert: certificate };
+        // Cria o servidor HTTPS utilizando as credenciais e a aplicação Express
+        this.httpsServer = https.createServer(credentials, this.app);
+      } catch (error) {
+        console.error("Erro ao configurar o servidor HTTPS:", error);
+      }
     } else {
       console.log(
         "Certificado HTTPS não configurado. O servidor HTTPS não será iniciado."
