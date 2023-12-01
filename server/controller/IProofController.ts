@@ -11,7 +11,9 @@ interface IComprovanteController {
    * @param comprovante - O comprovante a ser adicionado.
    * @returns Uma promessa que resolve com o status da operação.
    */
-  addProof(comprovante: Comprovante): Promise<{ status: number }>;
+  addProof(
+    comprovante: Comprovante
+  ): Promise<{ status: number; error?: string }>;
 }
 
 export default IComprovanteController;

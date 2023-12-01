@@ -414,3 +414,10 @@
 {"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-11-30 11:57:22-03:00","method":"POST","url":"/login"}
 {"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-30 11:58:08-03:00","method":"GET","url":"/test"}
 {"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-11-30 11:59:25-03:00","method":"GET","url":"/test"}
+{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-12-01 07:23:45-03:00","method":"GET","url":"/test"}
+{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-12-01 07:25:28-03:00","method":"GET","url":"/test"}
+{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-12-01 07:30:43-03:00","method":"GET","url":"/test"}
+{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-12-01 07:35:21-03:00","method":"GET","url":"/test"}
+{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-12-01 07:38:52-03:00","method":"GET","url":"/test"}
+{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-12-01 07:42:21-03:00","method":"GET","url":"/test"}
+{"level":"info","message":"Solicitação GET recebida para /test","timestamp":"2023-12-01 07:46:42-03:00","method":"GET","url":"/test"}

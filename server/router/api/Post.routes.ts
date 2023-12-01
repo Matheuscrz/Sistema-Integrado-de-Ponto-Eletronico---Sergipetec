@@ -42,9 +42,9 @@ class PostRoutes {
       verifyToken, // Middleware para verificar o token JWT
       async (req: Request, res: Response) => {
         try {
-          //Extrai dados da requisição
+          // Extrai dados da requisição
           const { userId, date, time, location } = req.body;
-          //Cria instâncias de controladores necessários
+          // Cria instâncias de controladores necessários
           const controller = new RegisterController();
           const proofController = new ProofController();
           // Verificando o tipo de registro
@@ -52,10 +52,12 @@ class PostRoutes {
             parseInt(userId),
             date
           );
+
           if (verifyResult.status === 200) {
             const typeRegister = verifyResult.type;
+
             if (typeRegister !== null) {
-              //Cria um novo registro
+              // Cria um novo registro
               const registro = new Registro(
                 parseInt(userId),
                 date,
@@ -66,8 +68,8 @@ class PostRoutes {
               // Adicionando o registro ao banco de dados
               const addResult = await controller.addRegister(registro);
 
-              if (addResult.status === 200) {
-                //Obtém informações do usuário
+              if (addResult.status === 200 && addResult.id !== undefined) {
+                // Obtém informações do usuário
                 const user = new UserController();
                 const userData = await user.getUserById(parseInt(userId));
 
@@ -75,7 +77,7 @@ class PostRoutes {
                   const userName = userData.user.nome;
                   const userCPF = userData.user.cpf;
                   const token = req.headers.authorization || "";
-                  //Cria um PDF para o comprovante
+                  // Cria um PDF para o comprovante
                   const pdf = new PDF(
                     addResult.id,
                     parseInt(userId),
@@ -85,8 +87,9 @@ class PostRoutes {
                     time,
                     token
                   );
+
                   const { pdfBytes, fileName } = await pdf.createComprovate();
-                  //Cria uma instância do Comprovante
+                  // Cria uma instância do Comprovante
                   const comprovante = new Comprovante(
                     parseInt(userId),
                     addResult.id,
@@ -95,12 +98,13 @@ class PostRoutes {
                     fileName,
                     pdfBytes
                   );
-                  //Adiciona o comprovante ao banco de dados
+                  // Adiciona o comprovante ao banco de dados
                   const addComprovanteResult = await proofController.addProof(
                     comprovante
                   );
+
                   if (addComprovanteResult.status === 200) {
-                    //Responde com sucesso
+                    // Responde com sucesso
                     res.status(200).json({
                       message: "Registro bem-sucedido",
                       registroId: addResult.id,
