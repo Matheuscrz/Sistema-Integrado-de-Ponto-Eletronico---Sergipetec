@@ -5,7 +5,7 @@ import PostRoutes from "../router/api/Post.routes";
 describe("PostRoutes", () => {
   let app: Express;
 
-  beforeAll(() => {
+  beforeEach(() => {
     app = express();
     app.use(express.json());
     const postRoutes = new PostRoutes();
@@ -21,6 +21,7 @@ describe("PostRoutes", () => {
 
       expect(response.status).toBe(200);
     });
+
     it("Lida com erros de autenticação", async () => {
       const response = await request(app).post("/login").send({
         cpf: "usuario_invalido",
@@ -40,7 +41,7 @@ describe("PostRoutes", () => {
         .set("Authorization", `${validToken}`)
         .send({
           userId: "2",
-          date: "2023-11-29",
+          date: "2023-12-01",
           time: "12:00:00",
           location: "Local de registro",
         });
@@ -49,11 +50,10 @@ describe("PostRoutes", () => {
     });
 
     it("Lida com erros durante o registro", async () => {
-      const validToken =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcGYiOiIwMTIzNDU2Nzg5MCIsImlhdCI6MTY5ODMyMTU1M30.o_aAyIuH6GGMFriQp-dZFBMJ4YqdC-_Fu2L6y76GbFs";
+      const invalidToken = "token_invalido";
       const response = await request(app)
         .post("/registrar-ponto")
-        .set("Authorization", `${validToken}`)
+        .set("Authorization", invalidToken)
         .send({
           userId: "usuario_invalido",
           date: "data_invalida",
@@ -61,7 +61,10 @@ describe("PostRoutes", () => {
           location: "Local de registro",
         });
 
-      expect(response.status).toBe(500);
+      expect(response.status).toBe(401);
+      expect(response.body.message).toBe(
+        "Token inválido. Talvez tenha expirado."
+      );
     });
   });
 });

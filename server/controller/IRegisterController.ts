@@ -32,7 +32,9 @@ interface IRegisterController {
    * @param register - O registro a ser adicionado.
    * @returns O status da requisição.
    */
-  addRegister(register: Registro): Promise<{ status: number; id: number }>;
+  addRegister(
+    register: Registro
+  ): Promise<{ status: number; id?: number; error?: string }>;
   /**
    * Verifica o tipo de registro de um usuário em uma data específica.
    * @param userId - O ID do usuário.

@@ -39,7 +39,9 @@ class ProofController implements IProofController {
    * @param comprovante - O comprovante a ser adicionado.
    * @returns Uma promessa que resolve com o status da operação.
    */
-  async addProof(comprovante: Comprovante): Promise<{ status: number }> {
+  async addProof(
+    comprovante: Comprovante
+  ): Promise<{ status: number; error?: string }> {
     try {
       await database.query(
         "INSERT INTO Comprovante (usuario_id, registro_id, data, hora, nomedoarquivo, arquivo) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id",
@@ -54,7 +56,10 @@ class ProofController implements IProofController {
       );
       return { status: 200 };
     } catch (error: any) {
-      return { status: 500 };
+      return {
+        status: 500,
+        error: error.message || "Erro interno no servidor",
+      };
     }
   }
 }

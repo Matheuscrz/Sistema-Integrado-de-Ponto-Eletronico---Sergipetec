@@ -1,4 +1,4 @@
-import verifyToken from "../auth/VerifyToken";
+import verifyToken from "../auth/verifyToken";
 import { Request, Response, NextFunction } from "express";
 
 describe("Middleware verifyToken", () => {
@@ -49,7 +49,7 @@ describe("Middleware verifyToken", () => {
 
     expect((res.status as jest.Mock).mock.calls[0][0]).toBe(401);
     expect((res.json as jest.Mock).mock.calls[0][0]).toEqual({
-      message: "Token inválido",
+      message: "Token inválido. Talvez tenha expirado.",
     });
     expect(next).not.toHaveBeenCalled();
   });

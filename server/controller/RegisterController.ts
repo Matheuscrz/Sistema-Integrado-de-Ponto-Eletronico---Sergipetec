@@ -81,7 +81,7 @@ class RegisterController implements IRegisterController {
    */
   async addRegister(
     register: Registro
-  ): Promise<{ status: number; id: number }> {
+  ): Promise<{ status: number; id?: number; error?: string }> {
     try {
       const query = `
         INSERT INTO Registros (
@@ -100,7 +100,10 @@ class RegisterController implements IRegisterController {
       const id = result.rows[0].id;
       return { status: 200, id };
     } catch (error: any) {
-      return { status: 500, id: 0 };
+      return {
+        status: 500,
+        error: error.message || "Erro interno no servidor",
+      };
     }
   }
   /**
