@@ -4,6 +4,7 @@ import GetRoutes from "./Get.routes";
 import path from "path";
 import loggerMiddleware from "../../middlewares/LoggerMiddleware";
 import cookieParser from "cookie-parser";
+import RedirectMiddleware from "../../middlewares/RedirectMiddlewareWeb";
 
 /**
  * Classe que encapsula a configuração das rotas e middleware para o aplicativo Express.
@@ -63,7 +64,12 @@ class WebRoutes {
     // Instancia os módulos de rotas
     const getRoutes = new GetRoutes();
 
+    //Adiciona o middleware de redirecionamento
+    this.app.use(RedirectMiddleware.redirectToHttps);
+
+    //Server arquivos estáticos no servidor
     this.app.use(express.static(path.join(__dirname, "../../../client/Web")));
+
     // Configuração de rotas
     this.app.use(getRoutes.getRouter());
   }

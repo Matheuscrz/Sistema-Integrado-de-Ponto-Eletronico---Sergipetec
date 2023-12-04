@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
 let numericCpf = "";
 let password = "";
 let isChecked = false;
-const base = "http";
-const IP = "192.168.0.241";
-const WEB_PORT = 3000;
-const API_PORT = 3001;
+const base = "https";
+const IP = "192.168.0.180";
+const WEB_PORT = 3443;
+const API_PORT = 3444;
 const BaseURL_API = `${base}://${IP}:${API_PORT}`;
 const baseURL_WEB = `${base}://${IP}:${WEB_PORT}`;
 
