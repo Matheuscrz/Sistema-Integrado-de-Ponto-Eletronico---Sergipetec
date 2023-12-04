@@ -4,7 +4,6 @@ import { Express } from "express";
 import { readFileSync } from "fs";
 import path from "path";
 import WebRoutes from "../router/web/Web.routes";
-import RedirectMiddleware from "../middlewares/RedirectMiddlewareWeb";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -40,9 +39,6 @@ class ServerWeb {
 
     // Inicializa a aplicação Express utilizando as rotas da classe WebRoutes
     this.app = new WebRoutes().getExpressApp();
-    // Adiciona o middleware de redirecionamento
-
-    // this.app.use(RedirectMiddleware.redirectToHttps);
 
     // Cria o servidor HTTP utilizando a aplicação Express
     this.httpServer = http.createServer(this.app);
