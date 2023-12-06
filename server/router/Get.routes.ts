@@ -1,9 +1,9 @@
 import express, { Request, Response, Router } from "express";
-import { UserController } from "../../controller/UserController";
-import ProofController from "../../controller/ProofController";
-import RegisterController from "../../controller/RegisterController";
-import { Registro } from "../../class/Registro";
-import verifyToken from "../../auth/verifyToken";
+import { UserController } from "../controller/UserController";
+import ProofController from "../controller/ProofController";
+import RegisterController from "../controller/RegisterController";
+import { Registro } from "../class/Registro";
+import verifyToken from "../auth/verifyToken";
 
 /**
  * Interface que define a estrutura da resposta do histórico.

@@ -2,15 +2,15 @@ import express, { Express } from "express";
 import cors, { CorsOptions } from "cors";
 import GetRoutes from "./Get.routes";
 import PostRoutes from "./Post.routes";
-import loggerMiddleware from "../../middlewares/LoggerMiddleware";
+import loggerMiddleware from "../middlewares/LoggerMiddleware";
 
 /**
  * Classe que encapsula a configuração das rotas e middleware para o aplicativo Express.
  * Utiliza o middleware CORS, manipulação de erros e rotas definidas nos módulos GetRoutes e PostRoutes
  * @class
- * @name ApiRoutes
+ * @name Router
  */
-class ApiRoutes {
+class Router {
   private readonly app: Express;
 
   /**
@@ -28,7 +28,7 @@ class ApiRoutes {
    * Configura os middleware do aplicativo, incluindo CORS e manipulação de erros.
    * @private
    * @function
-   * @name ApiRoutes.configureMiddleware
+   * @name Router.configureMiddleware
    */
   private configureMiddleware() {
     // Configurações para o middleware CORS
@@ -52,7 +52,7 @@ class ApiRoutes {
    * Configura as rotas do aplicativo, incluindo as rotas definidas nos módulos GetRoutes e PostRoutes.
    * @private
    * @function
-   * @name ApiRoutes.configureRoutes
+   * @name Router.configureRoutes
    */
   private configureRoutes() {
     // Instancia os módulos de rotas
@@ -67,7 +67,7 @@ class ApiRoutes {
   /**
    * Retorna o aplicativo Express configurado.
    * @function
-   * @name ApiRoutes.getExpressApp
+   * @name Router.getExpressApp
    * @returns {Express} O aplicativo Express configurado.
    */
   getExpressApp() {
@@ -75,4 +75,4 @@ class ApiRoutes {
   }
 }
 
-export default ApiRoutes;
+export default Router;

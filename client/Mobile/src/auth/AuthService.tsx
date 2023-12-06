@@ -8,7 +8,7 @@ interface AuthResult {
 }
 
 // Constantes globais para o endereço IP e porta da API
-const API_IP = "192.168.0.241";
+const API_IP = "192.168.0.180";
 const API_PORT = 3001;
 
 /**
