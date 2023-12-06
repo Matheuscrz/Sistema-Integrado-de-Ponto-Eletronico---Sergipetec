@@ -4,13 +4,12 @@ import * as FileSystem from "expo-file-system";
 import { Platform } from "react-native";
 
 // Constantes globais para o endereço IP e porta da rota
-const base = "http";
-const API_IP = "192.168.0.241";
+const API_IP = "192.168.0.180";
 const API_PORT = 3001;
 
 // Criação do objeto axios com as constantes globais
 const apiConfig = axios.create({
-  baseURL: `${base}://${API_IP}:${API_PORT}`,
+  baseURL: `http://${API_IP}:${API_PORT}`,
   validateStatus: function (status) {
     return status >= 200 && status < 500;
   },
@@ -91,7 +90,7 @@ const downloadReceipt = async (id: number) => {
 
     // Utilização das constantes globais
     const response = await FileSystem.downloadAsync(
-      `${base}://${API_IP}:${API_PORT}/download-comprovante/${id}`,
+      `http://${API_IP}:${API_PORT}/download-comprovante/${id}`,
       FileSystem.documentDirectory + fileName,
       {
         headers: {
