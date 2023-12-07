@@ -1,13 +1,14 @@
-import React from "react";
-import "./App.css";
-import LoginScreen from "./pages/LoginScreen";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./pages/Login";
 
-const App: React.FC = () => {
+function App() {
   return (
-    <div>
-      <LoginScreen />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;
