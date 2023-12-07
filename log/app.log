@@ -674,3 +674,6 @@
 {"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-12-06 08:34:21-03:00","method":"GET","url":"/home?userId=2"}
 {"level":"info","message":"Solicitação POST recebida para /registrar-ponto","timestamp":"2023-12-06 08:34:48-03:00","method":"POST","url":"/registrar-ponto"}
 {"level":"info","message":"Solicitação GET recebida para /historico?userId=2","timestamp":"2023-12-06 08:35:32-03:00","method":"GET","url":"/historico?userId=2"}
+{"level":"info","message":"Solicitação GET recebida para /","timestamp":"2023-12-07 08:17:43-03:00","method":"GET","url":"/"}
+{"level":"info","message":"Solicitação GET recebida para /","timestamp":"2023-12-07 08:17:53-03:00","method":"GET","url":"/"}
+{"level":"info","message":"Solicitação GET recebida para /","timestamp":"2023-12-07 08:18:10-03:00","method":"GET","url":"/"}

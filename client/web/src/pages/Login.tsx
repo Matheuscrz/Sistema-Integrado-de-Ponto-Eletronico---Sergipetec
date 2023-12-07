@@ -1,11 +1,13 @@
 import React from "react";
 import LoginForm from "../components/LoginForm";
+import "../styles/login.css";
 
-const LoginScreen: React.FC = () => {
+const Login: React.FC = () => {
   return (
-    <div>
+    <div className="login-container">
       <LoginForm />
     </div>
   );
 };
-export default LoginScreen;
+
+export default Login;
