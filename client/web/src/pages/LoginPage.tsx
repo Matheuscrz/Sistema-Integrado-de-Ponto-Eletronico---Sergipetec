@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "../styles/LoginPage.css";
 import { useNavigate } from "react-router-dom";
+import AuthService from "../service/AuthService";
 
 const LoginPage: React.FC = () => {
   const [cpf, setCpf] = useState("");
@@ -13,8 +14,30 @@ const LoginPage: React.FC = () => {
   const passwordRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
-  const handleLoginButton = () => {
-    console.log("login");
+  const handleLoginButton = async () => {
+    try {
+      const result = await AuthService.login(cpf, password);
+
+      if (result.sucess) {
+        navigate("/Home");
+      } else {
+        alert(getErrorMessage(result.error?.status));
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.error("Erro ao efetuar login:", error.message);
+      alert("Erro desconhecido");
+    }
+  };
+
+  const getErrorMessage = (status: number | undefined): string => {
+    switch (status) {
+      case 401:
+        return "Credenciais inválidas";
+      // Adicione outros casos conforme necessário
+      default:
+        return "Erro desconhecido";
+    }
   };
 
   const handleCpfChange = (text: string) => {

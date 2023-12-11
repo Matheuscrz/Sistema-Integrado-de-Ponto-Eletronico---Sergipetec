@@ -11,7 +11,7 @@ const RecoveryPage: React.FC = () => {
         <p>Para alterar a senha, envie um email com o seguinte conteúdo:</p>
       </div>
       <div className="emailContent">
-        <p>Assunto: Alteração de Senha Ponto</p>
+        <p>Assunto: Alteração de Senha de Ponto</p>
         <p>Corpo do Email:</p>
         <p>Nome Completo: [Seu Nome]</p>
         <p>CPF: [Seu CPF]</p>
