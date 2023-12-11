@@ -1,19 +1,17 @@
 import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import "../styles/LoginForm.css";
+import "../styles/LoginPage.css";
+import { useNavigate } from "react-router-dom";
 
-const LoginForm: React.FC = () => {
+const LoginPage: React.FC = () => {
   const [cpf, setCpf] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [numericCpf, setNumericCpf] = useState("");
-  const passwordRef = useRef(null);
-
-  const handleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const handleLoginButton = () => {
     console.log("login");
@@ -32,6 +30,7 @@ const LoginForm: React.FC = () => {
       formattedCpf += numericValue[i];
     }
     setCpf(formattedCpf);
+    console.log(numericCpf);
   };
 
   const toggleShowPassword = () => {
@@ -39,7 +38,7 @@ const LoginForm: React.FC = () => {
   };
 
   const handleChangePassword = () => {
-    console.log("senha");
+    navigate("/RecuperarSenha");
   };
 
   const isLoginButtonEnabled =
@@ -97,4 +96,4 @@ const LoginForm: React.FC = () => {
   );
 };
 
-export default LoginForm;
+export default LoginPage;

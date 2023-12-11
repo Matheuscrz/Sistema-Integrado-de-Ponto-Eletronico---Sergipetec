@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -12,6 +15,7 @@
   width: 80%;
   max-width: 300px;
   margin-top: 10px;
+  height: auto;
 }
 
 .input {
@@ -33,10 +37,8 @@
   width: 75%;
   max-width: 300px;
   margin: 10px 0;
-  padding-left: 16px;
   background-color: white;
   border-radius: 5px;
-  border: 1px solid black;
   box-sizing: border-box;
   position: relative;
 }
@@ -45,9 +47,11 @@
   flex: 1;
   height: 48px;
   font-size: 18px;
-  border: none;
   width: 100%;
   max-width: 300px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding-left: 16px;
 }
 
 .showPasswordButton {
@@ -59,6 +63,7 @@
   cursor: pointer;
   background: none;
   border: none;
+  color: #33d8d1;
 }
 
 .showPasswordButton:focus {
@@ -71,7 +76,7 @@
 
 .button {
   width: 75%;
-  max-width: 300px; /* Adicione um valor máximo */
+  max-width: 300px; 
   background-color: #33d8d1;
   margin-top: 10px;
   height: 40px;
@@ -104,6 +109,7 @@
   color: #33d8d1;
   font-weight: bold;
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .checkboxContainer {
