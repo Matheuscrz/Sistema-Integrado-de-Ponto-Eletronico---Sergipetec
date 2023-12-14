@@ -16,14 +16,13 @@ const LoginPage: React.FC = () => {
 
   const handleLoginButton = async () => {
     try {
-      const result = await AuthService.login(cpf, password);
+      const result = await AuthService.login(numericCpf, password);
 
       if (result.sucess) {
         navigate("/Home");
       } else {
         alert(getErrorMessage(result.error?.status));
       }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Erro ao efetuar login:", error.message);
       alert("Erro desconhecido");
@@ -34,7 +33,6 @@ const LoginPage: React.FC = () => {
     switch (status) {
       case 401:
         return "Credenciais inválidas";
-      // Adicione outros casos conforme necessário
       default:
         return "Erro desconhecido";
     }
@@ -53,7 +51,6 @@ const LoginPage: React.FC = () => {
       formattedCpf += numericValue[i];
     }
     setCpf(formattedCpf);
-    console.log(numericCpf);
   };
 
   const toggleShowPassword = () => {
@@ -115,6 +112,7 @@ const LoginPage: React.FC = () => {
           </span>
         </p>
       </div>
+      <div className="cookie-notice">Este site só funciona com cookies.</div>
     </div>
   );
 };
