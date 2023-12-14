@@ -6,7 +6,8 @@ interface LoginResponse {
   userId: number;
   message: string;
 }
-
+const API_IP = "localhost";
+const API_PORT = 3444;
 class AuthService {
   private cookies: Cookies;
 
@@ -22,8 +23,6 @@ class AuthService {
     error?: { status: number; message: string };
   }> {
     try {
-      const API_IP = "192.168.0.180";
-      const API_PORT = 3444;
       const response: AxiosResponse<LoginResponse> = await axios.post(
         `https://${API_IP}:${API_PORT}/login`,
         {
@@ -62,6 +61,9 @@ class AuthService {
   getUserId(): number | undefined {
     const userId = this.cookies.get("userId");
     return userId ? parseInt(userId, 10) : undefined;
+  }
+  getToken(): string | undefined {
+    return this.cookies.get("token");
   }
   logout(): void {
     this.cookies.remove("token", { path: "/" });
