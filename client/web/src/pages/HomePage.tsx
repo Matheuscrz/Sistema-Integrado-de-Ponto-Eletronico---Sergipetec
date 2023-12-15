@@ -2,8 +2,30 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../service/AuthService";
 import { getUserData } from "../config/ApiConfig";
+import "../styles/HomePage.css";
+import {
+  FaRegAddressCard,
+  FaCalendarAlt,
+  FaCalendarCheck,
+  FaSignOutAlt,
+  FaClipboardList,
+  FaUsers,
+  FaHandHolding,
+  FaCog,
+  FaTools,
+} from "react-icons/fa";
+import {
+  AllowancesComponent,
+  FrequencyComponent,
+  JourneysComponent,
+  MaintenanceComponent,
+  PresenceComponent,
+  RegisterComponent,
+  ReportsComponent,
+  SettingsComponent,
+} from "../components";
 
-interface UserData {
+export interface UserData {
   userId: string;
   nome: string;
   setor: string;
@@ -13,41 +35,17 @@ interface UserData {
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState<UserData | null>(null);
-  const [userButtons, setUserButtons] = useState<string[]>([]);
   const [userLocation, setUserLocation] = useState<string | null>(null);
+  const [selectedMenuItem, setSelectedMenuItem] = useState<string>("Registro");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const fetchedUserData: UserData = await getUserData();
         setUserData(fetchedUserData);
-        determineUserButtons(fetchedUserData);
         fetchUserLocation();
       } catch (error) {
         console.error("Erro ao obter dados do usuário", error);
-      }
-    };
-
-    const determineUserButtons = (user: UserData) => {
-      const accessButtons: { [key: number]: string[] } = {
-        1: [
-          "Registro",
-          "Frequência",
-          "Jornadas",
-          "Relatórios",
-          "Presenças",
-          "Abonos",
-          "Configuração",
-          "Manutenção",
-          "Sair",
-        ],
-        2: ["Registro", "Frequência", "Relatórios", "Presenças", "Sair"],
-      };
-
-      if (user && user.perfil_acesso_id in accessButtons) {
-        setUserButtons(accessButtons[user.perfil_acesso_id]);
-      } else {
-        setUserButtons(["registro", "sair"]);
       }
     };
 
@@ -85,21 +83,118 @@ const HomePage: React.FC = () => {
     navigate("/");
   };
 
-  if (!userData || userButtons.length === 0) {
-    return <div>Loading...</div>;
-  }
+  const handleMenuClick = (menuItem: string) => {
+    setSelectedMenuItem(menuItem);
+  };
 
   return (
-    <div>
-      <p>Localização: {userLocation}</p>
-      {userButtons.map((button) => (
-        <button
-          key={button}
-          onClick={button.toLowerCase() === "sair" ? handleSair : undefined}
+    <div style={{ display: "flex" }}>
+      <div className="menu-container">
+        <div
+          className={`menu-item ${
+            selectedMenuItem === "Registro" ? "active" : ""
+          }`}
         >
-          {button}
-        </button>
-      ))}
+          <FaRegAddressCard
+            size={30}
+            title="Registro de Ponto"
+            onClick={() => handleMenuClick("Registro")}
+          />
+        </div>
+        <div
+          className={`menu-item ${
+            selectedMenuItem === "Frequência" ? "active" : ""
+          }`}
+        >
+          <FaCalendarAlt
+            size={30}
+            title="Frequência"
+            onClick={() => handleMenuClick("Frequência")}
+          />
+        </div>
+        <div
+          className={`menu-item ${
+            selectedMenuItem === "Jornadas" ? "active" : ""
+          }`}
+        >
+          <FaCalendarCheck
+            size={30}
+            title="Jornadas"
+            onClick={() => handleMenuClick("Jornadas")}
+          />
+        </div>
+        <div
+          className={`menu-item ${
+            selectedMenuItem === "Relatórios" ? "active" : ""
+          }`}
+        >
+          <FaClipboardList
+            size={30}
+            title="Relatórios"
+            onClick={() => handleMenuClick("Relatórios")}
+          />
+        </div>
+        <div
+          className={`menu-item ${
+            selectedMenuItem === "Presenças" ? "active" : ""
+          }`}
+        >
+          <FaUsers
+            size={30}
+            title="Presenças"
+            onClick={() => handleMenuClick("Presenças")}
+          />
+        </div>
+        <div
+          className={`menu-item ${
+            selectedMenuItem === "Abonos" ? "active" : ""
+          }`}
+        >
+          <FaHandHolding
+            size={30}
+            title="Abonos"
+            onClick={() => handleMenuClick("Abonos")}
+          />
+        </div>
+        <div
+          className={`menu-item ${
+            selectedMenuItem === "Configuração" ? "active" : ""
+          }`}
+        >
+          <FaCog
+            size={30}
+            title="Configuração"
+            onClick={() => handleMenuClick("Configuração")}
+          />
+        </div>
+        <div
+          className={`menu-item ${
+            selectedMenuItem === "Manutenção" ? "active" : ""
+          }`}
+        >
+          <FaTools
+            size={30}
+            title="Manutenção"
+            onClick={() => handleMenuClick("Manutenção")}
+          />
+        </div>
+        <div className="menu-item" onClick={handleSair}>
+          <FaSignOutAlt size={30} title="Sair" style={{ cursor: "pointer" }} />
+        </div>
+      </div>
+
+      <div className="main-content">
+        {selectedMenuItem === "Registro" && userData && (
+          <RegisterComponent userData={userData} userLocation={userLocation} />
+        )}
+        {selectedMenuItem === "Frequência" && <FrequencyComponent />}
+        {selectedMenuItem === "Jornadas" && <JourneysComponent />}
+        {selectedMenuItem === "Relatórios" && <ReportsComponent />}
+        {selectedMenuItem === "Presenças" && <PresenceComponent />}
+        {selectedMenuItem === "Abonos" && <AllowancesComponent />}
+        {selectedMenuItem === "Configuração" && <SettingsComponent />}
+        {selectedMenuItem === "Manutenção" && <MaintenanceComponent />}
+      </div>
     </div>
   );
 };
