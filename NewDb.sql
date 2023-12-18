@@ -1,68 +1,41 @@
-CREATE SCHEMA ponto;
-
-CREATE TABLE ponto.PerfilAcesso (
+CREATE TABLE ponto.Empresa (
   id serial PRIMARY KEY,
-  nome varchar(50) UNIQUE
+  nome varchar(100),
+  cnpj varchar(14) UNIQUE,
+  razao_social varchar(255),
+  logo bytea
+);
+
+CREATE TABLE ponto.Regime (
+  id serial PRIMARY KEY,
+  nome varchar(100) UNIQUE
 );
 
 CREATE TABLE ponto.Departamento (
   id serial PRIMARY KEY,
-  nome varchar(100),
-  departamento_alocado varchar(100),
-  CONSTRAINT idx_departamento_nome UNIQUE (nome)
+  nome varchar(100) UNIQUE
 );
 
--- CREATE TABLE ponto.Frequencia (
---   id serial PRIMARY KEY,
---   usuario_id INT,
---   departamento_id INT,
---   data_inicial DATE,
---   data_final DATE,
---   incluir_subsetores BOOLEAN,
---   horas_extra_min INT,
---   jornada_id INT,
---   observacoes TEXT,
---   FOREIGN KEY (usuario_id) REFERENCES ponto.Usuario(id),
---   FOREIGN KEY (departamento_id) REFERENCES ponto.Departamento(id),
---   FOREIGN KEY (jornada_id) REFERENCES ponto.Jornada(id)
--- );
-
-CREATE TABLE ponto.Horarios (
+CREATE TABLE ponto.Cargo (
   id serial PRIMARY KEY,
-  nome varchar(100),
-  entrada time,
-  entrada_inicio time,
-  entrada_fim time,
-  saida time,
-  saida_inicio time,
-  saida_fim time
+  nome varchar(100) UNIQUE
 );
 
-CREATE TABLE ponto.Jornada (
+CREATE TABLE ponto.Genero (
   id serial PRIMARY KEY,
-  nome varchar(100),
-  inicio date,
-  ciclo varchar(50),
-  quantidade integer,
-  responsavel varchar(100)
+  nome varchar(10) UNIQUE
 );
 
-CREATE TABLE ponto.Frequencia (
+INDEX ponto_idx_genero_nome ON ponto.Genero (nome);
+
+CREATE TABLE ponto.Permissao (
   id serial PRIMARY KEY,
-  data DATE,
-  turno varchar(50),
-  entrada TIME,
-  saida TIME,
-  horas_trabalhadas_min INT,
-  saldo_min INT,
+  nome varchar(50) UNIQUE
 );
 
-CREATE TABLE ponto.RegistroDiario (
+CREATE TABLE ponto.PerfilAcesso (
   id serial PRIMARY KEY,
-  usuario_id INT,
-  data DATE,
-  ponto_registro TIME,
-  FOREIGN KEY (usuario_id) REFERENCES ponto.Usuario(id)
+  nome varchar(50) UNIQUE
 );
 
 CREATE TABLE ponto.Usuario (
@@ -71,244 +44,218 @@ CREATE TABLE ponto.Usuario (
   cpf varchar(11) UNIQUE,
   pis varchar(15) UNIQUE,
   matricula varchar(8) UNIQUE,
+  pin varchar(4),
+  genero_id INT,
+  data_nascimento DATE,
+  departamento_id INT,
   cargo_id INT,
   data_contratacao DATE,
   regime_id INT,
   ativo BOOLEAN,
   folga_feriado BOOLEAN,
-  acesso_livre BOOLEAN,
-  senha_hash varchar(100),
-  departamento_id INT,
-  FOREIGN KEY (regime_id) REFERENCES ponto.Regime(id),
-  FOREIGN KEY (cargo_id) REFERENCES ponto.Cargo(id),
-  FOREIGN KEY (perfil_acesso_id) REFERENCES ponto.PerfilAcesso(id),
-  FOREIGN KEY (departamento_id) REFERENCES ponto.Departamento(id)
-);
-
-CREATE TABLE ponto.Regime (
-  id serial PRIMARY KEY,
-  nome varchar(100) UNIQUE
-);
-
-CREATE INDEX ponto.idx_usuario_cpf_setor ON ponto.Usuario (cpf, setor);
-
-CREATE TABLE ponto.TipoRegistro (
-  id serial PRIMARY KEY,
-  tipo varchar(50) UNIQUE
-);
-
-CREATE TABLE ponto.Registros (
-  id SERIAL PRIMARY KEY,
-  usuario_id INT,
-  data DATE,
-  hora TIME,
-  localizacao VARCHAR(255),
-  tipo_registro_id INT,
-  FOREIGN KEY (usuario_id) REFERENCES ponto.Usuario(id),
-  FOREIGN KEY (tipo_registro_id) REFERENCES ponto.TipoRegistro(id)
-);
-
-CREATE INDEX ponto.idx_usuario_data ON ponto.Registros (usuario_id, data);
-
-CREATE TABLE ponto.Comprovante (
-  id SERIAL PRIMARY KEY,
-  usuario_id INT,
-  registro_id INT,
-  data DATE,
-  hora TIME,
-  nomedoarquivo VARCHAR(255) NOT NULL,
-  arquivo bytea,
-  FOREIGN KEY (usuario_id) REFERENCES ponto.Usuario(id),
-  FOREIGN KEY (registro_id) REFERENCES ponto.Registros(id)
-);
-
-CREATE TABLE ponto.Justificativa (
-  id SERIAL PRIMARY KEY,
-  registro_id INT,
-  texto VARCHAR(255),
-  FOREIGN KEY (registro_id) REFERENCES ponto.Registros(id)
-);
-
-CREATE TABLE ponto.HistoricoJornada (
-  id serial PRIMARY KEY,
-  usuario_id INT,
+  perfil_acesso_id INT,
+  senha_hash varchar(100), 
   jornada_id INT,
-  data_inicio DATE,
-  data_fim DATE,
-  FOREIGN KEY (usuario_id) REFERENCES ponto.Usuario(id),
-  FOREIGN KEY (jornada_id) REFERENCES ponto.Jornada(id)
+  perfil_id INT,
+  FOREIGN KEY (genero_id) REFERENCES ponto.Genero(id),
+  FOREIGN KEY (departamento_id) REFERENCES ponto.Departamento(id),
+  FOREIGN KEY (cargo_id) REFERENCES ponto.Cargo(id),
+  FOREIGN KEY (regime_id) REFERENCES ponto.Regime(id),
+  FOREIGN KEY (perfil_acesso_id) REFERENCES ponto.PerfilAcesso(id),
+  FOREIGN KEY (jornada_id) REFERENCES ponto.Jornada(id),
+  FOREIGN KEY (perfil_id) REFERENCES ponto.Perfil(id)
 );
 
-CREATE TABLE ponto.Afastamento (
-  id serial PRIMARY KEY,
-  usuario_id INT,
-  data_inicio DATE,
-  data_fim DATE,
-  categoria varchar(50),
-  FOREIGN KEY (usuario_id) REFERENCES ponto.Usuario(id)
-);
+CREATE INDEX ponto.idx_usuario_cpf ON ponto.Usuario (cpf);
 
-CREATE TABLE ponto.Presenca (
-  id serial PRIMARY KEY,
-  usuario_id INT,
-  data DATE,
-  hora TIME,
-  status varchar(20),
-  FOREIGN KEY (usuario_id) REFERENCES ponto.Usuario(id)
-);
-
-CREATE TABLE ponto.MotivoAbono (
+CREATE TABLE ponto.Motivo (
   id serial PRIMARY KEY,
   motivo varchar(100) UNIQUE
 );
 
-CREATE TABLE ponto.SolicitacaoAbono (
+CREATE TABLE ponto.Dispensa (
   id serial PRIMARY KEY,
-  usuario_id INT,
-  data_solicitacao DATE,
-  data_falta DATE,
-  pontos_solicitados INT,
-  descricao varchar(255),
-  motivo_abono_id INT,
-  status varchar(20),
-  FOREIGN KEY (usuario_id) REFERENCES ponto.Usuario(id),
-  FOREIGN KEY (motivo_abono_id) REFERENCES ponto.MotivoAbono(id)
+  userid INT,
+  data_inicio DATE,
+  data_fim DATE,
+  motivo_id INT,
+  data_registro DATE,
+  responsavel_registro varchar(100),
+  cod_sequencial varchar(20) UNIQUE,
+  FOREIGN KEY (userid) REFERENCES ponto.Usuario(id),
+  FOREIGN KEY (motivo_id) REFERENCES ponto.Motivo(id)
 );
 
-CREATE TABLE ponto.DiasAbertos (
+CREATE TABLE ponto.HoraExtra (
   id serial PRIMARY KEY,
-  usuario_id INT,
+  userid INT,
+  cargo_id INT,
+  regime_id INT,
   data DATE,
-  registros_em_aberto INT,
-  motivo_abono_id INT,
+  horas_extras_min INT,
+  horario_id INT,
+  FOREIGN KEY (userid) REFERENCES ponto.Usuario(id),
+  FOREIGN KEY (cargo_id) REFERENCES ponto.Cargo(id),
+  FOREIGN KEY (regime_id) REFERENCES ponto.Regime(id),
+  FOREIGN KEY (horario_id) REFERENCES ponto.Horario(id)
+);
+
+CREATE TABLE ponto.Horario (
+  id serial PRIMARY KEY,
+  horario_entrada TIME,
+  entrada_inicio TIME,
+  entrada_fim TIME,
+  saida TIME,
+  saida_inicio TIME,
+  saida_fim TIME,
+  tem_intervalo BOOLEAN,
+  horario_intervalo TIME,
+  inicio_intervalo TIME,
+  fim_intervalo TIME
+);
+
+CREATE TABLE ponto.Jornada (
+  id serial PRIMARY KEY,
+  nome varchar(100),
+  responsavel_id INT,
+  horario_id INT,
+  FOREIGN KEY (responsavel_id) REFERENCES ponto.Usuario(id),
+  FOREIGN KEY (horario_id) REFERENCES ponto.Horario(id)
+);
+
+CREATE TABLE TipoRegistro (
+  id serial PRIMARY KEY, 
+  tipo varchar(50) UNIQUE 
+);
+
+CREATE TABLE ponto.Registro (
+  id serial PRIMARY KEY,
+  userid INT,
+  data DATE,
+  hora TIME,
+  localizacao VARCHAR(255),
+  tipo_registro_id INT,
+  FOREIGN KEY (userid) REFERENCES ponto.Usuario(id),
+  FOREIGN KEY (tipo_registro_id) REFERENCES ponto.TipoRegistro(id)
+);
+
+CREATE TABLE ponto.SolicitacaoAbono (
+  codigoId serial PRIMARY KEY,
+  userid INT,
+  data_solicitacao DATE,
+  horario_id INT,
   descricao varchar(255),
-  FOREIGN KEY (usuario_id) REFERENCES ponto.Usuario(id),
-  FOREIGN KEY (motivo_abono_id) REFERENCES ponto.MotivoAbono(id)
+  status varchar(20),
+  resposta varchar(255),
+  responsavel_id INT,
+  FOREIGN KEY (userid) REFERENCES ponto.Usuario(id),
+  FOREIGN KEY (horario_id) REFERENCES ponto.Horario(id),
+  FOREIGN KEY (responsavel_id) REFERENCES ponto.Usuario(id)
+);
+
+CREATE TABLE ponto.REP_A (
+  id serial PRIMARY KEY,
+  nome varchar(100),
+  local varchar(255),
+  marca varchar(100),
+  ip varchar(15),
+  mask varchar(15),
+  porta int,
+  ativo BOOLEAN,
+  NFR varchar(50),
+  model varchar(100),
+  senha varchar(100)
+);
+
+CREATE TABLE ponto.REP_P (
+  id serial PRIMARY KEY,
+  nome varchar(100),
+  marca_software varchar(100)
+);
+
+CREATE TABLE ponto.REP (
+  id serial PRIMARY KEY,
+  rep_id INT,
+  tipo varchar(10),  
+  FOREIGN KEY (rep_a_id) REFERENCES ponto.REP_A(id),
+  FOREIGN KEY (rep_p_id) REFERENCES ponto.REP_P(id)
+);
+
+CREATE TABLE ponto.RegistroAbono (
+  id serial PRIMARY KEY,
+  userid INT,
+  data_pedido DATE,
+  justificativa_id INT,
+  data_requisicao DATE,
+  responsavel_id INT,
+  cod_solicitacao serial,
+  registro_id INT,
+  FOREIGN KEY (userid) REFERENCES ponto.Usuario(id),
+  FOREIGN KEY (justificativa_id) REFERENCES ponto.Justificativa(id),
+  FOREIGN KEY (responsavel_id) REFERENCES ponto.Usuario(id),
+  FOREIGN KEY (registro_id) REFERENCES ponto.Registro(id)
+);
+
+CREATE TABLE ponto.TipoPerfil (
+  id serial PRIMARY KEY,
+  nome varchar(50) UNIQUE,
+  pode_criar_usuario BOOLEAN,
+  pode_editar_usuario BOOLEAN,
+  pode_excluir_usuario BOOLEAN,
+  pode_criar_registro BOOLEAN,
+  pode_editar_registro BOOLEAN,
+  pode_excluir_registro BOOLEAN,
+);
+
+CREATE TABLE ponto.Perfil (
+  id serial PRIMARY KEY,
+  tipo_id INT,
+  FOREIGN KEY (tipo_id) REFERENCES ponto.TipoPerfil(id)
+);
+
+CREATE TABLE ponto.Justificativa (
+  id serial PRIMARY KEY,
+  tipo_id INT,
+  valor_outros varchar(255),
+  FOREIGN KEY (tipo_id) REFERENCES ponto.TipoJustificativa(id)
 );
 
 CREATE TABLE ponto.Feriados (
   id serial PRIMARY KEY,
   nome varchar(100),
-  data DATE,
-  critico BOOLEAN
+  data DATE
 );
 
-CREATE TABLE ponto.JustificativaAbono (
+CREATE TABLE ponto.LogsBancoDeDados (
   id serial PRIMARY KEY,
-  motivo varchar(255) UNIQUE
-);
-
-CREATE TABLE ponto.JustificativaAfastamento (
-  id serial PRIMARY KEY,
-  motivo varchar(255) UNIQUE
-);
-
-CREATE TABLE ponto.Cargo (
-  id serial PRIMARY KEY,
-  nome varchar(100) UNIQUE,
-  horario_entrada time,
-  intervalo_ini time,
-  intervalo_fim time,
-  horario_saida time,
-  carga_horaria integer,
-  perfil_acesso_id integer
-);
-
-CREATE TABLE ponto.ConfiguracoesEmpresa (
-  id serial PRIMARY KEY,
-  nome_empresa varchar(100) NOT NULL,
-  cnpj varchar(14) NOT NULL,
-  endereco varchar(255) NOT NULL,
-  logo bytea, 
-  CONSTRAINT idx_configuracoes_empresa UNIQUE (id)
-);
-
-INSERT INTO ponto.ConfiguracoesEmpresa (nome_empresa, cnpj, endereco)
-VALUES ('Nome Padrão', 'CNPJ Padrão', 'Endereço Padrão');
-
-INSERT INTO ponto.AfastamentoCategoria (categoria) VALUES 
-  ('Férias'),
-  ('Licença Maternidade');
-
-INSERT INTO ponto.PerfilAcesso (nome) VALUES 
-  ('Admin'),
-  ('RH'),
-  ('Usuario');
-
-INSERT INTO ponto.TipoRegistro (tipo) VALUES
-  ('Entrada'),
-  ('Saída para Almoço'),
-  ('Retorno do Almoço'),
-  ('Saída');
-
-CREATE TABLE ponto.logs (
-  id SERIAL PRIMARY KEY,
+  tabela_afetada varchar(100),
+  tipo_operacao varchar(10),
   mensagem TEXT,
-  timestamp TIMESTAMP DEFAULT NOW()
+  usuario_id INT,
+  data_alteracao TIMESTAMP DEFAULT NOW(),
+  FOREIGN KEY (usuario_id) REFERENCES ponto.Usuario(id)
 );
 
 CREATE OR REPLACE FUNCTION ponto.log_usuario_changes() RETURNS TRIGGER AS $$
 BEGIN
   CASE
     WHEN TG_OP = 'INSERT' THEN
-      INSERT INTO ponto.logs (mensagem) VALUES ('Inserção feita na tabela Usuario - ID: ' || NEW.id);
+      INSERT INTO ponto.LogsBancoDeDados (tabela_afetada, tipo_operacao, mensagem, usuario_id)
+      VALUES ('Usuario', 'INSERT', 'Inserção feita na tabela Usuario - ID: ' || NEW.id, CURRENT_USER);
     WHEN TG_OP = 'UPDATE' THEN
-      INSERT INTO ponto.logs (mensagem) VALUES (
+      INSERT INTO ponto.LogsBancoDeDados (tabela_afetada, tipo_operacao, mensagem, usuario_id)
+      VALUES ('Usuario', 'UPDATE',
         'Atualização feita na tabela Usuario - ID: ' || NEW.id ||
-        ' | Detalhes: ' || jsonb_pretty(to_jsonb(ROW(NEW) - ROW(OLD)))
-      );
+        ' | Detalhes: ' || jsonb_pretty(to_jsonb(ROW(NEW) - ROW(OLD))), CURRENT_USER);
     WHEN TG_OP = 'DELETE' THEN
-      INSERT INTO ponto.logs (mensagem) VALUES ('Exclusão feita na tabela Usuario - ID: ' || OLD.id);
+      INSERT INTO ponto.LogsBancoDeDados (tabela_afetada, tipo_operacao, mensagem, usuario_id)
+      VALUES ('Usuario', 'DELETE', 'Exclusão feita na tabela Usuario - ID: ' || OLD.id, CURRENT_USER);
   END CASE;
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER ponto.usuario_changes
+CREATE TRIGGER ponto_usuario_changes
 AFTER INSERT OR UPDATE OR DELETE ON ponto.Usuario
 FOR EACH ROW
 EXECUTE FUNCTION ponto.log_usuario_changes();
-
-CREATE OR REPLACE FUNCTION ponto.log_registros_changes() RETURNS TRIGGER AS $$
-BEGIN
-  CASE
-    WHEN TG_OP = 'INSERT' THEN
-      INSERT INTO ponto.logs (mensagem) VALUES ('Inserção feita na tabela Registros - ID: ' || NEW.id);
-    WHEN TG_OP = 'UPDATE' THEN
-      INSERT INTO ponto.logs (mensagem) VALUES (
-        'Atualização feita na tabela Registros - ID: ' || NEW.id ||
-        ' | Detalhes: ' || jsonb_pretty(to_jsonb(ROW(NEW) - ROW(OLD)))
-      );
-    WHEN TG_OP = 'DELETE' THEN
-      INSERT INTO ponto.logs (mensagem) VALUES ('Exclusão feita na tabela Registros - ID: ' || OLD.id);
-  END CASE;
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER ponto.registros_changes
-AFTER INSERT OR UPDATE OR DELETE ON ponto.Registros
-FOR EACH ROW
-EXECUTE FUNCTION ponto.log_registros_changes();
-
-CREATE OR REPLACE FUNCTION ponto.log_comprovante_changes() RETURNS TRIGGER AS $$
-BEGIN
-  CASE
-    WHEN TG_OP = 'INSERT' THEN
-      INSERT INTO ponto.logs (mensagem) VALUES ('Inserção feita na tabela Comprovante - ID: ' || NEW.id);
-    WHEN TG_OP = 'UPDATE' THEN
-      INSERT INTO ponto.logs (mensagem) VALUES (
-        'Atualização feita na tabela Comprovante - ID: ' || NEW.id ||
-        ' | Detalhes: ' || jsonb_pretty(to_jsonb(ROW(NEW) - ROW(OLD)))
-      );
-    WHEN TG_OP = 'DELETE' THEN
-      INSERT INTO ponto.logs (mensagem) VALUES ('Exclusão feita na tabela Comprovante - ID: ' || OLD.id);
-  END CASE;
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER ponto.comprovante_changes
-AFTER INSERT OR UPDATE OR DELETE ON ponto.Comprovante
-FOR EACH ROW
-EXECUTE FUNCTION ponto.log_comprovante_changes();

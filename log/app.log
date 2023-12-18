@@ -1111,3 +1111,6 @@
 {"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-12-15 10:56:13-03:00","method":"POST","url":"/login"}
 {"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-12-15 10:56:13-03:00","method":"GET","url":"/home?userId=2"}
 {"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-12-15 10:56:13-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação POST recebida para /login","timestamp":"2023-12-15 11:08:26-03:00","method":"POST","url":"/login"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-12-15 11:08:26-03:00","method":"GET","url":"/home?userId=2"}
+{"level":"info","message":"Solicitação GET recebida para /home?userId=2","timestamp":"2023-12-15 11:08:26-03:00","method":"GET","url":"/home?userId=2"}
