@@ -142,6 +142,16 @@ CREATE TABLE ponto.Registro (
   FOREIGN KEY (tipo) REFERENCES ponto.TipoRegistro(id)
 );
 
+CREATE TABLE Comprovante (
+  id SERIAL PRIMARY KEY,
+  usuario INT,
+  registro INT, 
+  data DATE,
+  hora TIME, 
+  FOREIGN KEY (usuario) REFERENCES ponto.Usuario(id),
+  FOREIGN KEY (registro) REFERENCES ponto.Registro(id)
+);
+
 CREATE TABLE ponto.Status(
   id serial PRIMARY KEY,
   nome VARCHAR(20)
