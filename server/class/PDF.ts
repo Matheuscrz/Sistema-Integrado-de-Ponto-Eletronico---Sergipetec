@@ -2,34 +2,41 @@ import { PDFDocument, rgb } from "pdf-lib";
 
 export class PDF {
   readonly NSR: number;
-  readonly usuarioID: number;
+  readonly usuario: number;
   readonly username: string;
   readonly CPF: string;
   readonly data: Date;
   readonly hora: Date;
   readonly token: string;
-  readonly nomeEmpresa: string = "Sergipe Parque Tecnológico";
-  readonly cnpjEmpresa: string = "06.938.508/0001-11";
-  readonly enderecoEmpresa: string =
-    "Avenida José Conrado de Araújo, 731 - Rosa Elze, São Cristóvão - SE, 49100-000";
+  readonly nomeEmpresa: string;
+  readonly cnpjEmpresa: string;
+  readonly enderecoEmpresa: string;
   readonly nomedoarquivo: string = "";
 
   constructor(
     NSR: number,
-    usuarioID: number,
+    usuario: number,
     username: string,
     CPF: string,
     data: Date,
     hora: Date,
-    token: string
+    token: string,
+    nomeEmpresa: string,
+    cnpjEmpresa: string,
+    enderecoEmpresa: string,
+    nomeDoArquivo: string
   ) {
     this.NSR = NSR;
-    this.usuarioID = usuarioID;
+    this.usuario = usuario;
     this.username = username;
     this.CPF = CPF;
     this.data = data;
     this.hora = hora;
     this.token = token;
+    this.nomeEmpresa = nomeEmpresa;
+    this.cnpjEmpresa = cnpjEmpresa;
+    this.enderecoEmpresa = enderecoEmpresa;
+    this.nomedoarquivo = nomeDoArquivo;
   }
   getCPF() {
     return this.CPF;
@@ -50,7 +57,7 @@ export class PDF {
     return this.hora;
   }
   getUsuarioID() {
-    return this.usuarioID;
+    return this.usuario;
   }
   getNomedoArquivo() {
     return this.nomedoarquivo;
@@ -60,8 +67,8 @@ export class PDF {
     pdfBytes: Uint8Array;
     fileName: string;
   }> {
-    const { NSR, usuarioID, data, hora } = this;
-    const nome = `${NSR}${usuarioID}${data}${hora}`;
+    const { NSR, usuario, data, hora } = this;
+    const nome = `${NSR}${usuario}${data}${hora}`;
     const nomedoarquivo = `${nome.replace(/[\W_]+/g, "")}.pdf`;
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage([700, 500]);

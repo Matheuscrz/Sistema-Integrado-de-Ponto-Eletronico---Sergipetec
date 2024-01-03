@@ -1,64 +1,154 @@
 export class Usuario {
+  /**
+   * Cria uma instância de Usuario.
+   * @param nome - O nome do usuário.
+   * @param cpf - O CPF do usuário.
+   * @param pis - O PIS do usuário.
+   * @param matricula - A matrícula do usuário.
+   * @param pin - O PIN do usuário.
+   * @param genero - O gênero do usuário.
+   * @param data_nascimento - A data de nascimento do usuário.
+   * @param departamento - O número do departamento do usuário.
+   * @param cargo - O número do cargo do usuário.
+   * @param data_contratacao - A data de contratação do usuário.
+   * @param regime - O número do regime de trabalho do usuário.
+   * @param ativo - Indica se o usuário está ativo (padrão: true).
+   * @param folga_feriado - Indica se o usuário tem folga em feriados (padrão: true).
+   * @param senha - A senha do usuário.
+   * @param jornada - A jornada de trabalho do usuário.
+   * @param perfil - O número do perfil do usuário (padrão: 1).
+   */
   constructor(
-    readonly nome: string,
-    readonly cpf: string,
-    readonly senha: string,
-    readonly pin: string,
-    readonly setor: string,
-    readonly horarioEntrada: string,
-    readonly intervalo_ini: string,
-    readonly intervalo_fim: string,
-    readonly horarioSaida: string,
-    readonly cargaHoraria: number,
-    readonly perfilAcessoId: number = 3
-  ) {}
+    nome: string,
+    cpf: string,
+    pis: string,
+    matricula: string,
+    pin: string,
+    genero: number,
+    data_nascimento: Date,
+    departamento: number,
+    cargo: number,
+    data_contratacao: Date,
+    regime: number,
+    ativo: boolean = true,
+    folga_feriado: boolean = true,
+    senha: string,
+    jornada: number,
+    perfil: number = 1
+  ) {
+    if (
+      !nome ||
+      !cpf ||
+      !pis ||
+      !matricula ||
+      !pin ||
+      genero === undefined ||
+      !data_nascimento ||
+      departamento === undefined ||
+      cargo === undefined ||
+      !data_contratacao ||
+      regime === undefined ||
+      !senha ||
+      jornada === undefined ||
+      perfil === undefined
+    ) {
+      throw new Error("Todos os campos obrigatórios devem ser fornecidos.");
+    }
 
-  getNome() {
+    this.nome = nome;
+    this.cpf = cpf;
+    this.pis = pis;
+    this.matricula = matricula;
+    this.pin = pin;
+    this.genero = genero;
+    this.data_nascimento = data_nascimento;
+    this.departamento = departamento;
+    this.cargo = cargo;
+    this.data_contratacao = data_contratacao;
+    this.regime = regime;
+    this.ativo = ativo;
+    this.folga_feriado = folga_feriado;
+    this.senha = senha;
+    this.jornada = jornada;
+    this.perfil = perfil;
+  }
+  getNome(): string {
     return this.nome;
   }
 
-  getCPF() {
+  getCPF(): string {
     return this.cpf;
   }
 
-  getPIN() {
+  getPIS(): string {
+    return this.pis;
+  }
+
+  getMatricula(): string {
+    return this.matricula;
+  }
+
+  getPIN(): string {
     return this.pin;
   }
 
-  getSetor() {
-    return this.setor;
+  getGenero(): number {
+    return this.genero;
   }
 
-  getHorarioEntrada() {
-    return this.horarioEntrada;
+  getDataNascimento(): Date {
+    return this.data_nascimento;
   }
 
-  getIntervaloIni() {
-    return this.intervalo_ini;
+  getDepartamento(): number {
+    return this.departamento;
   }
 
-  getIntervaloFim() {
-    return this.intervalo_fim;
+  getCargo(): number {
+    return this.cargo;
   }
 
-  getHorarioSaida() {
-    return this.horarioSaida;
+  getDataContratacao(): Date {
+    return this.data_contratacao;
   }
 
-  getCargaHoraria() {
-    return this.cargaHoraria;
+  getRegime(): number {
+    return this.regime;
   }
 
-  getPerfilAcesso() {
-    return this.perfilAcessoId;
+  isAtivo(): boolean {
+    return this.ativo;
   }
 
-  getSenha() {
+  hasFolgaFeriado(): boolean {
+    return this.folga_feriado;
+  }
+
+  getSenha(): string {
     return this.senha;
   }
 
-  // Método para obter a senha como uma string
-  getSenhaString() {
-    return this.senha;
+  getJornada(): number {
+    return this.jornada;
   }
+
+  getPerfil(): number {
+    return this.perfil;
+  }
+  nome: string;
+  cpf: string;
+  pis: string;
+  matricula: string;
+  pin: string;
+  genero: number;
+  data_nascimento: Date;
+  departamento: number;
+  cargo: number;
+  data_contratacao: Date;
+  regime: number;
+  ativo: boolean;
+  folga_feriado: boolean;
+  senha: string;
+  jornada: number;
+  perfil: number;
 }

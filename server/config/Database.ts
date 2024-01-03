@@ -23,7 +23,7 @@ class Database {
     this.pool = new Pool({
       user: "postgres",
       host: "localhost", // Servidor Local para desenvolvimento
-      database: "SergipeTec",
+      database: "Sistema de Ponto",
       password: process.env.DATABASE_PASSWORD, // Lendo de uma variável de ambiente
       port: 5432,
     });

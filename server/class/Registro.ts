@@ -1,41 +1,46 @@
 export class Registro {
-  readonly usuarioId: number;
-  readonly data: Date;
-  readonly hora: Date;
-  readonly localizacao: string;
-  readonly tipoRegistroId: number;
-
+  /**
+   * Cria uma instância de Registro.
+   * @param usuario - O número do usuário.
+   * @param data - A data do registro.
+   * @param hora - A hora do registro.
+   * @param localizacao - A localização do registro.
+   * @param tipo - O tipo do registro.
+   */
   constructor(
-    usuarioId: number,
-    data: Date,
-    hora: Date,
-    localizacao: string,
-    tipoRegistroId: number
+    public usuario: number,
+    public data: Date,
+    public hora: Date,
+    public localizacao: string,
+    public tipo: number
   ) {
-    this.usuarioId = usuarioId;
-    this.data = data;
-    this.hora = hora;
-    this.localizacao = localizacao;
-    this.tipoRegistroId = tipoRegistroId;
+    if (
+      usuario === undefined ||
+      !data ||
+      !hora ||
+      !localizacao ||
+      tipo === undefined
+    ) {
+      throw new Error("Todos os campos obrigatórios devem ser fornecidos.");
+    }
+  }
+  getUsuario(): number {
+    return this.usuario;
   }
 
-  getUsuarioId() {
-    return this.usuarioId;
-  }
-
-  getData() {
+  getData(): Date {
     return this.data;
   }
 
-  getHora() {
+  getHora(): Date {
     return this.hora;
   }
 
-  getLocalizacao() {
+  getLocalizacao(): string {
     return this.localizacao;
   }
 
-  getTipoRegistroId() {
-    return this.tipoRegistroId;
+  getTipoRegistro(): number {
+    return this.tipo;
   }
 }
