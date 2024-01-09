@@ -2,10 +2,10 @@ CREATE SCHEMA ponto;
 
 CREATE TABLE ponto.Empresa (
   id SERIAL PRIMARY KEY,
-  nome varchar(100) NOT NULL,
-  cnpj varchar(14) UNIQUE NOT NULL,
-  razao_social varchar(255) NOT NULL,
-  logo bytea
+  nome VARCHAR(100) NOT NULL,
+  cnpj VARCHAR(14) UNIQUE NOT NULL,
+  razao_social VARCHAR(255) NOT NULL,
+  logo BYTEA
 );
 
 CREATE TABLE ponto.Regime (
@@ -86,15 +86,18 @@ CREATE TABLE ponto.Usuario (
   pin varchar(4) UNIQUE NOT NULL,
   genero INT NOT NULL,
   data_nascimento DATE NOT NULL,
-  departamento INT NOT NULL,
-  cargo INT NOT NULL,
+  departamento INT,
+  cargo INT,
   data_contratacao DATE NOT NULL,
-  regime INT NOT NULL,
-  ativo BOOLEAN NOT NULL,
-  folga_feriado BOOLEAN NOT NULL,
+  regime INT,
+  ativo BOOLEAN,
+  folga_feriado BOOLEAN,
   senha varchar(100) NOT NULL,
-  jornada,
-  perfil,
+  jornada INT,
+  perfil INT,
+  refresh_token VARCHAR(255),
+  token_binding_key VARCHAR(255),
+  ultimo_acesso TIMESTAMP,
   FOREIGN KEY (genero) REFERENCES ponto.Genero(id),
   FOREIGN KEY (departamento) REFERENCES ponto.Departamento(id),
   FOREIGN KEY (cargo) REFERENCES ponto.Cargo(id),
@@ -283,7 +286,7 @@ BEGIN
       INSERT INTO ponto.LogsBancoDeDados (tabela_afetada, tipo_operacao, mensagem, usuario)
       VALUES (TG_TABLE_NAME, 'UPDATE',
         'Atualização feita na tabela ' || TG_TABLE_NAME || ' - ID: ' || NEW.id ||
-        ' | Detalhes: ' || ponto.row_to_jsonb(NEW), CURRENT_USER);
+        ' | Detalhes: ' || to_jsonb(NEW), CURRENT_USER);
     WHEN TG_OP = 'DELETE' THEN
       UPDATE ponto.Usuario
       SET ativo = FALSE
