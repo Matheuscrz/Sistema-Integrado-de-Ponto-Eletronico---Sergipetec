@@ -1,19 +1,26 @@
 FROM postgres:latest as builder
 COPY init-db.sql /docker-entrypoint-initdb.d/
 COPY partition-script.sql /docker-entrypoint-initdb.d/
-FROM node:lts
+
+FROM node:lts as development
+
 WORKDIR /app
+
 COPY ./package.json .
 COPY ./tsconfig.json .
 COPY ./jest.config.ts .
 COPY ./nodemom.json .
 COPY ./server ./server
 COPY ./log ./log
+COPY ./.env .
+# COPY ./cert.pem .
+# COPY ./key.pem .
+# COPY ./LICENSE .
 
-RUN npm install
+COPY --from=builder /docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/
 
-RUN npm run build
+RUN npm install --only=development
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]

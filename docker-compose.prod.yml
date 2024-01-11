@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-ponto
+    environment:
+      POSTGRES_DB: sipe
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: database159753
+    ports:
+      - "5432:5432"
+    networks:
+      - ponto-network
+
+  redis:
+    image: redis:latest
+    container_name: redis-ponto
+    ports:
+      - "6379:6379"
+    networks:
+      - ponto-network
+
+  node-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: server-api
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    networks:
+      - ponto-network
+
+networks:
+  ponto-network:
+    driver: bridge

@@ -3,25 +3,27 @@ version: "3"
 services:
   postgres:
     image: postgres:latest
-    container_name: postgres-ponto
+    container_name: postgres-ponto-dev
     environment:
       POSTGRES_DB: sipe
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: database159753
     ports:
       - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
 
   redis:
     image: redis:latest
-    container_name: redis-ponto
+    container_name: redis-ponto-dev
     ports:
       - "6379:6379"
 
   node-app:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: server-api
+      dockerfile: Dockerfile.dev
+    container_name: server-api-dev
     depends_on:
       - postgres
       - redis
@@ -29,3 +31,7 @@ services:
       - "3000:3000"
     env_file:
       - .env
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./server:/app/server
