@@ -8,6 +8,7 @@ COPY ./tsconfig.json .
 COPY ./jest.config.ts .
 COPY ./nodemom.json .
 COPY ./server ./server
+COPY ./log ./log
 
 RUN npm install
 
