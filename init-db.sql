@@ -1,3 +1,7 @@
+CREATE DATABASE Sistema;
+
+\c Sistema;
+
 CREATE SCHEMA ponto;
 
 CREATE TABLE ponto.Empresa (

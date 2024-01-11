@@ -8,5 +8,6 @@ client
 .gitignore
 instalacao.md
 LICENSE
-ScriptDeParticionamento.sql
 README.md
+cert.pem
+key.pem

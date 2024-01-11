@@ -1,5 +1,6 @@
 FROM postgres:latest as builder
 COPY init-db.sql /docker-entrypoint-initdb.d/
+COPY partition-script.sql /docker-entrypoint-initdb.d/
 FROM node:lts
 WORKDIR /app
 COPY ./package.json .
