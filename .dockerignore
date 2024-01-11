@@ -4,3 +4,9 @@ Codigo Criação Db.sql
 Codigo PlantUML - Classes.txt
 Codigo PlantUML - Projeto.txt
 Sistema de Pontos - Sergipetec.pdf
+client
+.gitignore
+instalacao.md
+LICENSE
+ScriptDeParticionamento.sql
+README.md

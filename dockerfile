@@ -1,10 +1,17 @@
+FROM postgres:latest as builder
+COPY init-db.sql /docker-entrypoint-initdb.d/
 FROM node:lts
 WORKDIR /app
-COPY package.json /app/package.json
-COPY tsconfig.json /app/tsconfig.json
-# COPY ./src /app/src
-# COPY ./src/views /app/views
+COPY ./package.json .
+COPY ./tsconfig.json .
+COPY ./jest.config.ts .
+COPY ./nodemom.json .
+COPY ./server ./server
+
 RUN npm install
+
 RUN npm run build
+
 EXPOSE 3000
-CMD ["node", "./dist/server.js"]
+
+CMD ["npm", "start"]
