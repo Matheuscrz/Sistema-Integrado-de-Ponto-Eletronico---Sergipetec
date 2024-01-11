@@ -1,6 +1,6 @@
-CREATE DATABASE Sistema;
+CREATE DATABASE Sipe;
 
-\c Sistema;
+\c Sipe;
 
 CREATE SCHEMA ponto;
 
