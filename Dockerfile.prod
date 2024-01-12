@@ -1,7 +1,10 @@
+# Estágio de Construção para PostgreSQL
 FROM postgres:latest as builder
 COPY init-db.sql /docker-entrypoint-initdb.d/
 COPY partition-script.sql /docker-entrypoint-initdb.d/
+COPY postgresql.conf /etc/postgresql/postgresql.conf
 
+# Estágio de Produção para Node.js
 FROM node:lts as production
 
 WORKDIR /app
@@ -13,9 +16,8 @@ COPY ./nodemom.json .
 COPY ./server ./server
 COPY ./log ./log
 COPY ./.env .
-# COPY ./cert.pem .
-# COPY ./key.pem .
-# COPY ./LICENSE .
+COPY ./nginx.conf .
+
 
 RUN npm install --only=production
 
