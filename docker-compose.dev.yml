@@ -2,7 +2,7 @@ version: "3"
 
 services:
   postgres:
-    image: postgres:latest
+    image: postgres:16.1-alphine3.19
     container_name: postgres-ponto-dev
     environment:
       POSTGRES_DB: sipe-dev
@@ -14,7 +14,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   redis:
-    image: redis:latest
+    image: redis:7.2-alphine
     container_name: redis-ponto-dev
     ports:
       - "6379:6379"
@@ -36,7 +36,7 @@ services:
       - ./server:/app/
 
   nginx:
-    image: nginx:latest
+    image: nginx:1.25.3-alpine
     container_name: nginx-ponto
     ports:
       - "80:80"

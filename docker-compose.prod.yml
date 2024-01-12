@@ -2,7 +2,7 @@ version: "3"
 
 services:
   postgres:
-    image: postgres:latest
+    image: postgres:16.1-alphine3.19
     container_name: postgres-ponto
     environment:
       POSTGRES_DB: sipe
@@ -17,10 +17,10 @@ services:
       resources:
         limits:
           cpus: "0.4"
-          memory: "2GB"
+          memory: "1.5GB"
 
   redis:
-    image: redis:latest
+    image: redis:7.2-alphine
     container_name: redis-ponto
     ports:
       - "6379:6379"
@@ -29,7 +29,8 @@ services:
       resources:
         limits:
           cpus: "0.2"
-          memory: "1GB"
+          memory: "0.5GB"
+    command: redis-server --save "" --appendonly no --maxclients 20000
 
   node-app:
     build:
@@ -48,10 +49,10 @@ services:
       resources:
         limits:
           cpus: "0.6"
-          memory: "2GB"
+          memory: "1.5GB"
 
   nginx:
-    image: nginx:latest
+    image: nginx:1.25.3-alpine
     container_name: nginx-ponto
     ports:
       - "80:80"
@@ -65,7 +66,7 @@ services:
       resources:
         limits:
           cpus: "0.2"
-          memory: "1GB"
+          memory: "0.5GB"
 
 volumes:
   postgres-data:
