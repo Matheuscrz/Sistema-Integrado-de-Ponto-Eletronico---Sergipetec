@@ -5,7 +5,7 @@ COPY partition-script.sql /docker-entrypoint-initdb.d/
 COPY postgresql.conf /etc/postgresql/postgresql.conf
 
 # Estágio de Produção para Node.js
-FROM node:lts as production
+FROM node:21-alpine3.18 as production
 
 WORKDIR /app
 
