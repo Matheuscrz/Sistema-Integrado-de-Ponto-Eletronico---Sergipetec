@@ -46,5 +46,17 @@ services:
     depends_on:
       - node-app
 
+  pgadmin4:
+    image: elestio/pgadmin:latest
+    container_name: pgadmin-ponto
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@sergipetec.com
+      PGADMIN_DEFAULT_PASSWORD: 159753
+    depends_on:
+      - postgres
+    network_mode: "host"
+
 volumes:
   postgres-data:
