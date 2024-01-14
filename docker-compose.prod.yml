@@ -2,7 +2,7 @@ version: "3"
 
 services:
   postgres:
-    image: postgres:16.1-alphine3.19
+    image: postgres:latest-alpine
     container_name: postgres-ponto
     environment:
       POSTGRES_DB: sipe
@@ -20,7 +20,7 @@ services:
           memory: "1GB"
 
   redis:
-    image: redis:7.2-alphine
+    image: redis:latest-alpine
     container_name: redis-ponto
     ports:
       - "6379:6379"
@@ -71,7 +71,7 @@ services:
           memory: "1GB"
 
   nginx:
-    image: nginx:1.25.3-alpine
+    image: nginx:latest-alpine
     container_name: nginx-ponto
     ports:
       - "80:80"

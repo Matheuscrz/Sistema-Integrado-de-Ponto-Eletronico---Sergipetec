@@ -1,11 +1,11 @@
 # Estágio de Construção para PostgreSQL
-FROM postgres:latest as builder
+FROM postgres:latest-alpine as builder
 COPY init-db.sql /docker-entrypoint-initdb.d/
 COPY partition-script.sql /docker-entrypoint-initdb.d/
 COPY postgresql.conf /etc/postgresql/postgresql.conf
 
 # Estágio de Produção para Node.js
-FROM node:21-alpine3.18 as production
+FROM node:14-alpine as production
 
 WORKDIR /app
 
