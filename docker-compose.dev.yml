@@ -62,7 +62,8 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
-      - node-app
+      - node-app-1
+      - node-app-2
     networks:
       - ponto-network
 
