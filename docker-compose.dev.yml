@@ -36,7 +36,7 @@ services:
       - ./server:/app/
 
   nginx:
-    image: nginx:latest-alpine
+    image: nginx:latest
     container_name: nginx-ponto
     ports:
       - "80:80"
