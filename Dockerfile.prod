@@ -16,7 +16,6 @@ COPY ./nodemom.json .
 COPY ./server ./server
 COPY ./log ./log
 COPY ./.env .
-COPY ./nginx.conf .
 
 
 RUN npm install --only=production

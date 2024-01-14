@@ -12,7 +12,8 @@ services:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
-    network_mode: "host"
+    networks:
+      - ponto-network
     deploy:
       resources:
         limits:
@@ -24,7 +25,8 @@ services:
     container_name: redis-ponto
     ports:
       - "6379:6379"
-    network_mode: "host"
+    networks:
+      - ponto-network
     deploy:
       resources:
         limits:
@@ -44,7 +46,8 @@ services:
       - "3000:3000"
     env_file:
       - .env
-    network_mode: "host"
+    networks:
+      - ponto-network
     deploy:
       resources:
         limits:
@@ -60,10 +63,11 @@ services:
       - postgres
       - redis
     ports:
-      - "3001:3000" # Use uma porta diferente para cada instância
+      - "3001:3000"
     env_file:
       - .env
-    network_mode: "host"
+    networks:
+      - ponto-network
     deploy:
       resources:
         limits:
@@ -79,8 +83,10 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
-      - node-app
-    network_mode: "host"
+      - node-app-1
+      - node-app-2
+    networks:
+      - ponto-network
     deploy:
       resources:
         limits:
@@ -97,7 +103,12 @@ services:
       PGADMIN_DEFAULT_PASSWORD: 159753
     depends_on:
       - postgres
-    network_mode: "host"
+    networks:
+      - ponto-network
+
+networks:
+  ponto-network:
+    driver: bridge
 
 volumes:
   postgres-data:

@@ -16,7 +16,6 @@ COPY ./nodemom.json .
 COPY ./server ./server
 COPY ./log ./log
 COPY ./.env .
-COPY ./nginx.conf .
 
 # Copiar os scripts do estágio de construção (se necessário)
 COPY --from=builder /docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/
