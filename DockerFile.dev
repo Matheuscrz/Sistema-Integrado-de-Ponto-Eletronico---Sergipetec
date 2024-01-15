@@ -1,29 +1,6 @@
 # Estágio de Construção para PostgreSQL
-FROM postgres:latest-alpine as builder
+FROM postgres:latest-alpine
+
 COPY init-db.sql /docker-entrypoint-initdb.d/
 COPY partition-script.sql /docker-entrypoint-initdb.d/
 COPY postgresql.conf /etc/postgresql/postgresql.conf
-
-# Estágio de Desenvolvimento para Node.js
-FROM node:14-alpine as development
-
-WORKDIR /app
-
-COPY ./package.json .
-COPY ./tsconfig.json .
-COPY ./jest.config.ts .
-COPY ./nodemom.json .
-COPY ./server ./server
-COPY ./log ./log
-COPY ./.env .
-
-# Copiar os scripts do estágio de construção (se necessário)
-COPY --from=builder /docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/
-
-RUN npm install --only=development
-
-# Expor a porta, mas não iniciar automaticamente o servidor Node
-EXPOSE 3000
-
-# Comando alterado para um comando "echo"
-CMD ["echo", "Os serviços estão em execução, mas o servidor Node não foi iniciado"]
