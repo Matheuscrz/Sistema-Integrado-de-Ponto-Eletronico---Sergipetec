@@ -3,26 +3,27 @@ version: "3"
 services:
   postgres:
     image: postgres:alpine
-    container_name: postgres-ponto
+    container_name: postgres-test
     environment:
-      POSTGRES_DB: sipe
+      POSTGRES_DB: server
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: database159753
+      POSTGRES_PASSWORD: 159753
     ports:
       - "5432:5432"
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - ./data:/var/lib/postgresql/data
     networks:
       - ponto-network
     deploy:
       resources:
         limits:
           cpus: "0.4"
-          memory: "1GB"
+          memory: "0.5GB"
 
   redis:
     image: redis:alpine
-    container_name: redis-ponto
+    container_name: redis-test
+    restart: always
     ports:
       - "6379:6379"
     networks:
@@ -31,8 +32,7 @@ services:
       resources:
         limits:
           cpus: "0.2"
-          memory: "0.5GB"
-    command: redis-server --save "" --appendonly no --maxclients 20000
+          memory: "0.25GB"
 
   node-app-1:
     build:
@@ -51,8 +51,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.6"
-          memory: "1GB"
+          cpus: "0.3"
+          memory: "0.25GB"
 
   node-app-2:
     build:
@@ -71,12 +71,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.6"
-          memory: "1GB"
+          cpus: "0.3"
+          memory: "0.25GB"
 
   nginx:
     image: nginx:alpine
-    container_name: nginx-ponto
     ports:
       - "80:80"
       - "443:443"
@@ -90,8 +89,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.2"
-          memory: "0.5GB"
+          cpus: "0.1"
+          memory: "0.25GB"
 
   pgadmin4:
     image: elestio/pgadmin:latest
