@@ -5,8 +5,7 @@
     "start": "npm run build && node build/server/App.js",
     "dev": "nodemon",
     "build": "rimraf build/server && tsc",
-    "test": "jest",
-    "postinstall": "npm prune"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Matheus Lima da Cruz <matheuslimasof.eng@gmail.com>",
